@@ -16,7 +16,7 @@ public class Wordle {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        MainJFrame.main(args);
+    MainJFrame.main(args);
     }
     
 }
