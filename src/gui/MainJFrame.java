@@ -461,7 +461,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_palabrajTextFieldKeyTyped
 
     private void setPalabra() {
-        palabra = this.palabrajTextField.getText().toString().toUpperCase().replaceAll("[^A-Z]", "");
+        palabra = this.palabrajTextField.getText().toUpperCase().replaceAll("[^A-Z]", "");
 
         if (fila < 6) {
             setLetras();
