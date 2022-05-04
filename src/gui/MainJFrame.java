@@ -4,11 +4,17 @@
  */
 package gui;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.font.TextAttribute;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 import javax.swing.JLabel;
+import motores.IMotor;
+import motores.MotorTest;
 
 /**
  *
@@ -16,14 +22,17 @@ import javax.swing.JLabel;
  */
 public class MainJFrame extends javax.swing.JFrame {
 
+    private IMotor motor;
+    private String objetivo;
     private String palabra;
+    private String palabras[];
     private int fila = 0;
     private JLabel cuadricula[][];
 
     /**
      * Creates new form MainJFrame
      */
-    public MainJFrame() {
+    public MainJFrame(IMotor motor) {
         initComponents();
         JLabel eje[][] = {
             {this.jLabel0_0, this.jLabel0_1, this.jLabel0_2, this.jLabel0_3, this.jLabel0_4},
@@ -34,6 +43,9 @@ public class MainJFrame extends javax.swing.JFrame {
             {this.jLabel5_0, this.jLabel5_1, this.jLabel5_2, this.jLabel5_3, this.jLabel5_4}
         };
         cuadricula = eje;
+        this.motor = motor;
+        objetivo = motor.obtenerPalabraAleatoria();
+        palabras = new String[6];
 
         //TODO: implementar el funcionamiento del enter para poder saltar de linea
     }
@@ -81,12 +93,16 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel5_3 = new javax.swing.JLabel();
         jLabel5_4 = new javax.swing.JLabel();
         titulojLabel = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
 
         palabrajTextField.setBackground(new java.awt.Color(255, 255, 255));
+        palabrajTextField.setColumns(5);
         palabrajTextField.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
         palabrajTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         palabrajTextField.setMargin(new java.awt.Insets(2, 10, 2, 6));
@@ -408,6 +424,14 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(74, 74, 74))
         );
 
+        jMenu1.setText("Archivo");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Motores");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -440,16 +464,40 @@ public class MainJFrame extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             if (fila < 6) {
                 if (!cuadricula[fila][4].getText().isEmpty()) {
-                    palabrajTextField.setText("");
-                    fila++;
-                    if (fila == 6) {
-                        System.out.println("TERMINÓ");
+                    if (motor.checkPalabra(palabra)) {
+                        palabras[fila] = palabra;
+                        setColores();
+                        palabrajTextField.setText("");
+                        fila++;
+                        if (fila == 6) {
+                            System.out.println("TERMINÓ");
+                        }
                     }
+
                 }
             }
         }
         setPalabra();
     }//GEN-LAST:event_palabrajTextFieldKeyPressed
+
+    private void setColores() {
+        for (int i = 0; i < 5; i++) {
+            if (objetivo.charAt(i) == palabras[fila].charAt(i)) {
+                cuadricula[fila][i].setForeground(Color.green);
+            }
+        }
+        for (int i = 0; i < 5; i++) {
+            if (objetivo.contains(palabras[fila].charAt(i) + "")) {
+                if (!cuadricula[fila][i].getForeground().equals(Color.green)) {
+                    cuadricula[fila][i].setForeground(Color.yellow);
+              }
+            }
+        }
+    }
+
+    private void setColore(int n) {
+
+    }
 
     private void palabrajTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_palabrajTextFieldKeyReleased
         setPalabra();
@@ -548,7 +596,7 @@ public class MainJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainJFrame().setVisible(true);
+                new MainJFrame(new MotorTest()).setVisible(true);
             }
         });
     }
@@ -585,6 +633,9 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5_2;
     private javax.swing.JLabel jLabel5_3;
     private javax.swing.JLabel jLabel5_4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField palabrajTextField;
     private javax.swing.JPanel principaljPanel;
     private javax.swing.JLabel titulojLabel;
