@@ -5,6 +5,7 @@
 package wordle;
 
 import gui.MainJFrame;
+import motores.*;
 
 /**
  *
@@ -16,7 +17,7 @@ public class MainWordle {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-    MainJFrame.main(args);
+        wordle.Wordle.lanzar();
     }
     
 }

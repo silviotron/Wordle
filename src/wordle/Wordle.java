@@ -12,12 +12,19 @@ import motores.*;
  * @author silvi
  */
 public class Wordle {
-    public void lanzar(IMotor motor){
+    public static void lanzar(IMotor motor){
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainJFrame(motor).setVisible(true);
             }
         });
     }
+    public static void lanzar(){
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MainJFrame().setVisible(true);
+            }
+        });
+    }    
     
 }

@@ -13,8 +13,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.JLabel;
-import motores.IMotor;
-import motores.MotorTest;
+import motores.*;
 
 /**
  *
@@ -49,6 +48,23 @@ public class MainJFrame extends javax.swing.JFrame {
 
         //TODO: implementar el funcionamiento del enter para poder saltar de linea
     }
+    public MainJFrame() {
+        initComponents();
+        JLabel eje[][] = {
+            {this.jLabel0_0, this.jLabel0_1, this.jLabel0_2, this.jLabel0_3, this.jLabel0_4},
+            {this.jLabel1_0, this.jLabel1_1, this.jLabel1_2, this.jLabel1_3, this.jLabel1_4},
+            {this.jLabel2_0, this.jLabel2_1, this.jLabel2_2, this.jLabel2_3, this.jLabel2_4},
+            {this.jLabel3_0, this.jLabel3_1, this.jLabel3_2, this.jLabel3_3, this.jLabel3_4},
+            {this.jLabel4_0, this.jLabel4_1, this.jLabel4_2, this.jLabel4_3, this.jLabel4_4},
+            {this.jLabel5_0, this.jLabel5_1, this.jLabel5_2, this.jLabel5_3, this.jLabel5_4}
+        };
+        cuadricula = eje;
+        this.motor = new MotorTest();
+        objetivo = motor.obtenerPalabraAleatoria();
+        palabras = new String[6];
+
+        //TODO: implementar el funcionamiento del enter para poder saltar de linea
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,6 +75,7 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        motoresButtonGroup = new javax.swing.ButtonGroup();
         palabrajTextField = new javax.swing.JTextField();
         fondojPanel = new javax.swing.JPanel();
         principaljPanel = new javax.swing.JPanel();
@@ -93,17 +110,20 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel5_3 = new javax.swing.JLabel();
         jLabel5_4 = new javax.swing.JLabel();
         titulojLabel = new javax.swing.JLabel();
+        textojLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
+        jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
+        jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
 
         palabrajTextField.setBackground(new java.awt.Color(255, 255, 255));
-        palabrajTextField.setColumns(5);
-        palabrajTextField.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
+        palabrajTextField.setFont(new java.awt.Font("Monospaced", 0, 36)); // NOI18N
         palabrajTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         palabrajTextField.setMargin(new java.awt.Insets(2, 10, 2, 6));
         palabrajTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -403,6 +423,10 @@ public class MainJFrame extends javax.swing.JFrame {
         titulojLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulojLabel.setText("WORDLE");
 
+        textojLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        textojLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textojLabel1.setText(" ");
+
         javax.swing.GroupLayout fondojPanelLayout = new javax.swing.GroupLayout(fondojPanel);
         fondojPanel.setLayout(fondojPanelLayout);
         fondojPanelLayout.setHorizontalGroup(
@@ -411,7 +435,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(fondojPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(titulojLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(principaljPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(principaljPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textojLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
         );
         fondojPanelLayout.setVerticalGroup(
@@ -421,13 +446,44 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(titulojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(principaljPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
+                .addGap(13, 13, 13)
+                .addComponent(textojLabel1)
+                .addGap(13, 13, 13))
         );
 
         jMenu1.setText("Archivo");
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Motores");
+
+        motoresButtonGroup.add(jRadioButtonMenuItem1);
+        jRadioButtonMenuItem1.setSelected(true);
+        jRadioButtonMenuItem1.setText("TEST");
+        jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jRadioButtonMenuItem1);
+
+        motoresButtonGroup.add(jRadioButtonMenuItem2);
+        jRadioButtonMenuItem2.setText("Alumnos");
+        jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jRadioButtonMenuItem2);
+
+        motoresButtonGroup.add(jRadioButtonMenuItem3);
+        jRadioButtonMenuItem3.setText("Ingles");
+        jRadioButtonMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jRadioButtonMenuItem3);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -439,18 +495,18 @@ public class MainJFrame extends javax.swing.JFrame {
             .addComponent(fondojPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(25, 25, 25)
-                    .addComponent(palabrajTextField)
-                    .addGap(25, 25, 25)))
+                    .addGap(140, 140, 140)
+                    .addComponent(palabrajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(160, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondojPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(fondojPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(228, 228, 228)
-                    .addComponent(palabrajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(184, Short.MAX_VALUE)))
+                    .addGap(210, 210, 210)
+                    .addComponent(palabrajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(361, Short.MAX_VALUE)))
         );
 
         pack();
@@ -467,14 +523,19 @@ public class MainJFrame extends javax.swing.JFrame {
                     if (motor.checkPalabra(palabra)) {
                         palabras[fila] = palabra;
                         setColores();
+                        if (palabras[fila].equals(objetivo)) {
+                            this.textojLabel1.setForeground(Color.green);
+                            this.textojLabel1.setText("Ganaste perro.");
+                        }
                         palabrajTextField.setText("");
                         fila++;
-                        if (fila == 6) {
-                            System.out.println("TERMINÓ");
-                        }
+                        
                     }
 
                 }
+            }else{
+                this.textojLabel1.setForeground(Color.red);
+                this.textojLabel1.setText("Perdiste perro. Era " + objetivo);                
             }
         }
         setPalabra();
@@ -490,7 +551,7 @@ public class MainJFrame extends javax.swing.JFrame {
             if (objetivo.contains(palabras[fila].charAt(i) + "")) {
                 if (!cuadricula[fila][i].getForeground().equals(Color.green)) {
                     cuadricula[fila][i].setForeground(Color.yellow);
-              }
+                }
             }
         }
     }
@@ -507,6 +568,39 @@ public class MainJFrame extends javax.swing.JFrame {
         setPalabra();
 
     }//GEN-LAST:event_palabrajTextFieldKeyTyped
+
+    private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
+        motor = new MotorTest();
+        restart();
+    }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
+
+    private void jRadioButtonMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem2ActionPerformed
+        motor = new MotorAlumnos();
+        restart();
+
+    }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
+
+    private void jRadioButtonMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem3ActionPerformed
+        motor = new MotorIngles();
+        restart();
+
+    }//GEN-LAST:event_jRadioButtonMenuItem3ActionPerformed
+
+    private void restart() {
+        for (JLabel[] x : cuadricula) {
+            for (JLabel y : x) {
+                y.setText("");
+                y.setForeground(Color.gray);
+            }
+        }
+        for (String p : palabras) {
+            p = "";
+        }
+        this.palabrajTextField.setText("");
+        fila = 0;
+        this.textojLabel1.setText(" ");
+        objetivo = motor.obtenerPalabraAleatoria();
+    }
 
     private void setPalabra() {
         palabra = this.palabrajTextField.getText().toUpperCase().replaceAll("[^A-Z]", "");
@@ -636,8 +730,13 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
+    private javax.swing.ButtonGroup motoresButtonGroup;
     private javax.swing.JTextField palabrajTextField;
     private javax.swing.JPanel principaljPanel;
+    private javax.swing.JLabel textojLabel1;
     private javax.swing.JLabel titulojLabel;
     // End of variables declaration//GEN-END:variables
 
