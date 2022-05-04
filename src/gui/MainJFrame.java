@@ -18,20 +18,23 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private String palabra;
     private int fila = 0;
-    private javax.swing.JLabel cuadricula[][] = {
-        {this.jLabel0_0, this.jLabel0_1, this.jLabel0_2, this.jLabel0_3, this.jLabel0_4},
-        {this.jLabel1_0, this.jLabel1_1, this.jLabel1_2, this.jLabel1_3, this.jLabel1_4},
-        {this.jLabel2_0, this.jLabel2_1, this.jLabel2_2, this.jLabel2_3, this.jLabel2_4},
-        {this.jLabel3_0, this.jLabel3_1, this.jLabel3_2, this.jLabel3_3, this.jLabel3_4},
-        {this.jLabel4_0, this.jLabel4_1, this.jLabel4_2, this.jLabel4_3, this.jLabel4_4},
-        {this.jLabel5_0, this.jLabel5_1, this.jLabel5_2, this.jLabel5_3, this.jLabel5_4}
-    };
+    private JLabel cuadricula[][];
 
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
+        JLabel eje[][] = {
+            {this.jLabel0_0, this.jLabel0_1, this.jLabel0_2, this.jLabel0_3, this.jLabel0_4},
+            {this.jLabel1_0, this.jLabel1_1, this.jLabel1_2, this.jLabel1_3, this.jLabel1_4},
+            {this.jLabel2_0, this.jLabel2_1, this.jLabel2_2, this.jLabel2_3, this.jLabel2_4},
+            {this.jLabel3_0, this.jLabel3_1, this.jLabel3_2, this.jLabel3_3, this.jLabel3_4},
+            {this.jLabel4_0, this.jLabel4_1, this.jLabel4_2, this.jLabel4_3, this.jLabel4_4},
+            {this.jLabel5_0, this.jLabel5_1, this.jLabel5_2, this.jLabel5_3, this.jLabel5_4}
+        };
+        cuadricula = eje;
+
         //TODO: implementar el funcionamiento del enter para poder saltar de linea
     }
 
@@ -435,36 +438,14 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void palabrajTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_palabrajTextFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (fila == 0) {
-                if (!this.jLabel0_4.getText().isEmpty()) {
+            if (fila < 6) {
+                if (!cuadricula[fila][4].getText().isEmpty()) {
                     palabrajTextField.setText("");
-                    fila = 1;
+                    fila++;
+                    if (fila == 6) {
+                        System.out.println("TERMINÓ");
+                    }
                 }
-            }else if (fila == 1) {
-                if (!this.jLabel1_4.getText().isEmpty()) {
-                    palabrajTextField.setText("");
-                    fila = 2;
-                }                
-            }else if (fila == 2) {
-                if (!this.jLabel2_4.getText().isEmpty()) {
-                    palabrajTextField.setText("");
-                    fila = 3;
-                }               
-            }else if (fila == 3) {
-                if (!this.jLabel3_4.getText().isEmpty()) {
-                    palabrajTextField.setText("");
-                    fila = 4;
-                }                
-            }else if (fila == 4) {
-                if (!this.jLabel4_4.getText().isEmpty()) {
-                    palabrajTextField.setText("");
-                    fila = 5;
-                }                
-            }else if (fila == 5) {
-                if (!this.jLabel5_4.getText().isEmpty()) {
-                    palabrajTextField.setText("");
-                    fila = 6;
-                }                
             }
         }
         setPalabra();
@@ -482,64 +463,54 @@ public class MainJFrame extends javax.swing.JFrame {
     private void setPalabra() {
         palabra = this.palabrajTextField.getText().toString().toUpperCase().replaceAll("[^A-Z]", "");
 
-        if (fila == 0) {
-            setLetras(jLabel0_0, jLabel0_1, jLabel0_2, jLabel0_3, jLabel0_4);
-        } else if(fila == 1){
-            setLetras(jLabel1_0, jLabel1_1, jLabel1_2, jLabel1_3, jLabel1_4);
-        } else if(fila == 2){
-            setLetras(jLabel2_0, jLabel2_1, jLabel2_2, jLabel2_3, jLabel2_4);
-        } else if(fila == 3){
-            setLetras(jLabel3_0, jLabel3_1, jLabel3_2, jLabel3_3, jLabel3_4);
-        } else if(fila == 4){
-            setLetras(jLabel4_0, jLabel4_1, jLabel4_2, jLabel4_3, jLabel4_4);
-        } else if(fila == 5){
-            setLetras(jLabel5_0, jLabel5_1, jLabel5_2, jLabel5_3, jLabel5_4);
+        if (fila < 6) {
+            setLetras();
         }
     }
 
-    private void setLetras(JLabel l0, JLabel l1, JLabel l2, JLabel l3, JLabel l4) {
+    private void setLetras() {
         if (palabra.length() == 0) {
-            l0.setText("");
-            l1.setText("");
-            l2.setText("");
-            l3.setText("");
-            l4.setText("");
+            cuadricula[fila][0].setText("");
+            cuadricula[fila][1].setText("");
+            cuadricula[fila][2].setText("");
+            cuadricula[fila][3].setText("");
+            cuadricula[fila][4].setText("");
         }
-        
+
         if (palabra.length() == 1) {
-            l0.setText(palabra.charAt(0) + "");
-            l1.setText("");
-            l2.setText("");
-            l3.setText("");
-            l4.setText("");
+            cuadricula[fila][0].setText(palabra.charAt(0) + "");
+            cuadricula[fila][1].setText("");
+            cuadricula[fila][2].setText("");
+            cuadricula[fila][3].setText("");
+            cuadricula[fila][4].setText("");
         }
         if (palabra.length() == 2) {
-            l0.setText(palabra.charAt(0) + "");
-            l1.setText(palabra.charAt(1) + "");
-            l2.setText("");
-            l3.setText("");
-            l4.setText("");
+            cuadricula[fila][0].setText(palabra.charAt(0) + "");
+            cuadricula[fila][1].setText(palabra.charAt(1) + "");
+            cuadricula[fila][2].setText("");
+            cuadricula[fila][3].setText("");
+            cuadricula[fila][4].setText("");
         }
         if (palabra.length() == 3) {
-            l0.setText(palabra.charAt(0) + "");
-            l1.setText(palabra.charAt(1) + "");
-            l2.setText(palabra.charAt(2) + "");
-            l3.setText("");
-            l4.setText("");
+            cuadricula[fila][0].setText(palabra.charAt(0) + "");
+            cuadricula[fila][1].setText(palabra.charAt(1) + "");
+            cuadricula[fila][2].setText(palabra.charAt(2) + "");
+            cuadricula[fila][3].setText("");
+            cuadricula[fila][4].setText("");
         }
         if (palabra.length() == 4) {
-            l0.setText(palabra.charAt(0) + "");
-            l1.setText(palabra.charAt(1) + "");
-            l2.setText(palabra.charAt(2) + "");
-            l3.setText(palabra.charAt(3) + "");
-            l4.setText("");
+            cuadricula[fila][0].setText(palabra.charAt(0) + "");
+            cuadricula[fila][1].setText(palabra.charAt(1) + "");
+            cuadricula[fila][2].setText(palabra.charAt(2) + "");
+            cuadricula[fila][3].setText(palabra.charAt(3) + "");
+            cuadricula[fila][4].setText("");
         }
         if (palabra.length() == 5) {
-            l0.setText(palabra.charAt(0) + "");
-            l1.setText(palabra.charAt(1) + "");
-            l2.setText(palabra.charAt(2) + "");
-            l3.setText(palabra.charAt(3) + "");
-            l4.setText(palabra.charAt(4) + "");
+            cuadricula[fila][0].setText(palabra.charAt(0) + "");
+            cuadricula[fila][1].setText(palabra.charAt(1) + "");
+            cuadricula[fila][2].setText(palabra.charAt(2) + "");
+            cuadricula[fila][3].setText(palabra.charAt(3) + "");
+            cuadricula[fila][4].setText(palabra.charAt(4) + "");
         }
         if (palabra.length() > 5) {
             palabra = palabra.substring(0, 5);
