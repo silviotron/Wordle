@@ -48,6 +48,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         //TODO: implementar el funcionamiento del enter para poder saltar de linea
     }
+
     public MainJFrame() {
         initComponents();
         JLabel eje[][] = {
@@ -65,7 +66,7 @@ public class MainJFrame extends javax.swing.JFrame {
         this.palabrajTextField.setHighlighter(null);
 
         //TODO: implementar el funcionamiento del enter para poder saltar de linea
-    }    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -115,17 +116,21 @@ public class MainJFrame extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
+        motor1JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
+        motor2JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
+        motor3JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
 
-        palabrajTextField.setBackground(new java.awt.Color(255, 255, 255));
+        palabrajTextField.setBackground(new java.awt.Color(102, 102, 102));
         palabrajTextField.setFont(new java.awt.Font("Monospaced", 0, 36)); // NOI18N
+        palabrajTextField.setForeground(new java.awt.Color(102, 102, 102));
         palabrajTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        palabrajTextField.setBorder(null);
+        palabrajTextField.setCaretColor(new java.awt.Color(102, 102, 102));
+        palabrajTextField.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         palabrajTextField.setMargin(new java.awt.Insets(2, 10, 2, 6));
         palabrajTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -457,33 +462,33 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jMenu2.setText("Motores");
 
-        motoresButtonGroup.add(jRadioButtonMenuItem1);
-        jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("TEST");
-        jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        motoresButtonGroup.add(motor1JRadioButtonMenuItem);
+        motor1JRadioButtonMenuItem.setSelected(true);
+        motor1JRadioButtonMenuItem.setText("TEST");
+        motor1JRadioButtonMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonMenuItem1ActionPerformed(evt);
+                motor1JRadioButtonMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jRadioButtonMenuItem1);
+        jMenu2.add(motor1JRadioButtonMenuItem);
 
-        motoresButtonGroup.add(jRadioButtonMenuItem2);
-        jRadioButtonMenuItem2.setText("Alumnos");
-        jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        motoresButtonGroup.add(motor2JRadioButtonMenuItem);
+        motor2JRadioButtonMenuItem.setText("Alumnos");
+        motor2JRadioButtonMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonMenuItem2ActionPerformed(evt);
+                motor2JRadioButtonMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jRadioButtonMenuItem2);
+        jMenu2.add(motor2JRadioButtonMenuItem);
 
-        motoresButtonGroup.add(jRadioButtonMenuItem3);
-        jRadioButtonMenuItem3.setText("Ingles");
-        jRadioButtonMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        motoresButtonGroup.add(motor3JRadioButtonMenuItem);
+        motor3JRadioButtonMenuItem.setText("Ingles");
+        motor3JRadioButtonMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonMenuItem3ActionPerformed(evt);
+                motor3JRadioButtonMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jRadioButtonMenuItem3);
+        jMenu2.add(motor3JRadioButtonMenuItem);
 
         jMenuBar1.add(jMenu2);
 
@@ -496,8 +501,8 @@ public class MainJFrame extends javax.swing.JFrame {
             .addComponent(fondojPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(140, 140, 140)
-                    .addComponent(palabrajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(139, 139, 139)
+                    .addComponent(palabrajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(160, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -506,8 +511,8 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(210, 210, 210)
-                    .addComponent(palabrajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(221, Short.MAX_VALUE)))
+                    .addComponent(palabrajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(220, Short.MAX_VALUE)))
         );
 
         pack();
@@ -530,14 +535,14 @@ public class MainJFrame extends javax.swing.JFrame {
                         }
                         palabrajTextField.setText("");
                         fila++;
-                        
+
                     }
 
                 }
             }
-            if(fila >= 6){
+            if (fila >= 6) {
                 this.textojLabel1.setForeground(Color.red);
-                this.textojLabel1.setText("Perdiste perro. Era " + objetivo);                
+                this.textojLabel1.setText("Perdiste perro. Era " + objetivo);
             }
         }
         setPalabra();
@@ -547,10 +552,10 @@ public class MainJFrame extends javax.swing.JFrame {
         for (int i = 0; i < 5; i++) {
             if (objetivo.charAt(i) == palabras[fila].charAt(i)) {
                 cuadricula[fila][i].setForeground(Color.green);
-            }else if (objetivo.contains(palabras[fila].charAt(i) + "")) {
-                    cuadricula[fila][i].setForeground(Color.yellow);
-                
-            }else{
+            } else if (objetivo.contains(palabras[fila].charAt(i) + "")) {
+                cuadricula[fila][i].setForeground(Color.yellow);
+
+            } else {
                 cuadricula[fila][i].setForeground(Color.black);
             }
         }
@@ -569,22 +574,29 @@ public class MainJFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_palabrajTextFieldKeyTyped
 
-    private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
-        motor = new MotorTest();
-        restart();
-    }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
+    private void motor1JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor1JRadioButtonMenuItemActionPerformed
+        if (this.motor1JRadioButtonMenuItem.isSelected() == false) {
+            motor = new MotorTest();
+            restart();
+        }
 
-    private void jRadioButtonMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem2ActionPerformed
+    }//GEN-LAST:event_motor1JRadioButtonMenuItemActionPerformed
+
+    private void motor2JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor2JRadioButtonMenuItemActionPerformed
+        if (this.motor2JRadioButtonMenuItem.isSelected() == false) {
         motor = new MotorAlumnos();
         restart();
+        }        
 
-    }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
+    }//GEN-LAST:event_motor2JRadioButtonMenuItemActionPerformed
 
-    private void jRadioButtonMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem3ActionPerformed
+    private void motor3JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor3JRadioButtonMenuItemActionPerformed
+        if (this.motor2JRadioButtonMenuItem.isSelected() == false) {
         motor = new MotorIngles();
         restart();
+        }        
 
-    }//GEN-LAST:event_jRadioButtonMenuItem3ActionPerformed
+    }//GEN-LAST:event_motor3JRadioButtonMenuItemActionPerformed
 
     private void restart() {
         for (JLabel[] x : cuadricula) {
@@ -730,9 +742,9 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
+    private javax.swing.JRadioButtonMenuItem motor1JRadioButtonMenuItem;
+    private javax.swing.JRadioButtonMenuItem motor2JRadioButtonMenuItem;
+    private javax.swing.JRadioButtonMenuItem motor3JRadioButtonMenuItem;
     private javax.swing.ButtonGroup motoresButtonGroup;
     private javax.swing.JTextField palabrajTextField;
     private javax.swing.JPanel principaljPanel;
