@@ -62,6 +62,7 @@ public class MainJFrame extends javax.swing.JFrame {
         this.motor = new MotorTest();
         objetivo = motor.obtenerPalabraAleatoria();
         palabras = new String[6];
+        this.palabrajTextField.setHighlighter(null);
 
         //TODO: implementar el funcionamiento del enter para poder saltar de linea
     }    
@@ -506,7 +507,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(210, 210, 210)
                     .addComponent(palabrajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(361, Short.MAX_VALUE)))
+                    .addContainerGap(221, Short.MAX_VALUE)))
         );
 
         pack();
@@ -533,7 +534,8 @@ public class MainJFrame extends javax.swing.JFrame {
                     }
 
                 }
-            }else{
+            }
+            if(fila >= 6){
                 this.textojLabel1.setForeground(Color.red);
                 this.textojLabel1.setText("Perdiste perro. Era " + objetivo);                
             }
@@ -545,13 +547,11 @@ public class MainJFrame extends javax.swing.JFrame {
         for (int i = 0; i < 5; i++) {
             if (objetivo.charAt(i) == palabras[fila].charAt(i)) {
                 cuadricula[fila][i].setForeground(Color.green);
-            }
-        }
-        for (int i = 0; i < 5; i++) {
-            if (objetivo.contains(palabras[fila].charAt(i) + "")) {
-                if (!cuadricula[fila][i].getForeground().equals(Color.green)) {
+            }else if (objetivo.contains(palabras[fila].charAt(i) + "")) {
                     cuadricula[fila][i].setForeground(Color.yellow);
-                }
+                
+            }else{
+                cuadricula[fila][i].setForeground(Color.black);
             }
         }
     }
