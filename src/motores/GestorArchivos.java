@@ -23,7 +23,8 @@ public class GestorArchivos {
         try(BufferedReader reader = new BufferedReader(new FileReader(f))){  
             String s = reader.readLine();
             while(s != null){
-                set.add(s);
+                    set.add(s);
+                    s = reader.readLine();
             }
 
         } catch (IOException ex) {}

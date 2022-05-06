@@ -123,6 +123,7 @@ public class MainJFrame extends javax.swing.JFrame {
         motor1JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         motor2JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         motor3JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
+        motor4JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -503,6 +504,15 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         jMenu2.add(motor3JRadioButtonMenuItem);
 
+        motoresButtonGroup.add(motor4JRadioButtonMenuItem);
+        motor4JRadioButtonMenuItem.setText("archivo");
+        motor4JRadioButtonMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                motor4JRadioButtonMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(motor4JRadioButtonMenuItem);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -616,6 +626,14 @@ public class MainJFrame extends javax.swing.JFrame {
     private void nuevoJMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoJMenuItem1ActionPerformed
         restart();
     }//GEN-LAST:event_nuevoJMenuItem1ActionPerformed
+
+    private void motor4JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor4JRadioButtonMenuItemActionPerformed
+        if (!this.motor.getClass().equals(MotorArchivo.class)) {
+            motor = new MotorArchivo();
+            restart();
+            
+        }  
+    }//GEN-LAST:event_motor4JRadioButtonMenuItemActionPerformed
 
     private void restart() {
         for (JLabel[] x : cuadricula) {
@@ -764,6 +782,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem motor1JRadioButtonMenuItem;
     private javax.swing.JRadioButtonMenuItem motor2JRadioButtonMenuItem;
     private javax.swing.JRadioButtonMenuItem motor3JRadioButtonMenuItem;
+    private javax.swing.JRadioButtonMenuItem motor4JRadioButtonMenuItem;
     private javax.swing.ButtonGroup motoresButtonGroup;
     private javax.swing.JMenuItem nuevoJMenuItem1;
     private javax.swing.JTextField palabrajTextField;
