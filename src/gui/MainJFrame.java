@@ -588,28 +588,28 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_palabrajTextFieldKeyTyped
 
     private void motor1JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor1JRadioButtonMenuItemActionPerformed
-//        if (this.motor1JRadioButtonMenuItem.isSelected() == false) {
+        if (!this.motor.getClass().equals(MotorTest.class)) {
             motor = new MotorTest();
             restart();
             
-//        }
+        }
 
     }//GEN-LAST:event_motor1JRadioButtonMenuItemActionPerformed
 
     private void motor2JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor2JRadioButtonMenuItemActionPerformed
-//        if (this.motor2JRadioButtonMenuItem.isSelected() == false) {
+        if (!this.motor.getClass().equals(MotorAlumnos.class)) {
             motor = new MotorAlumnos();
             restart();           
-//        }        
+        }        
 
     }//GEN-LAST:event_motor2JRadioButtonMenuItemActionPerformed
 
     private void motor3JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor3JRadioButtonMenuItemActionPerformed
-//        if (this.motor3JRadioButtonMenuItem.isSelected() == false) {
+        if (!this.motor.getClass().equals(MotorIngles.class)) {
             motor = new MotorIngles();
             restart();
             
-//        }        
+        }        
 
     }//GEN-LAST:event_motor3JRadioButtonMenuItemActionPerformed
 
