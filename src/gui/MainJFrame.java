@@ -64,6 +64,9 @@ public class MainJFrame extends javax.swing.JFrame {
         objetivo = motor.obtenerPalabraAleatoria();
         palabras = new String[6];
         this.palabrajTextField.setHighlighter(null);
+        this.motor1JRadioButtonMenuItem.setSelected(true);
+        this.motor2JRadioButtonMenuItem.setSelected(false);
+        this.motor3JRadioButtonMenuItem.setSelected(false);
 
         //TODO: implementar el funcionamiento del enter para poder saltar de linea
     }
@@ -115,6 +118,7 @@ public class MainJFrame extends javax.swing.JFrame {
         textojLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        nuevoJMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         motor1JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         motor2JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
@@ -458,6 +462,15 @@ public class MainJFrame extends javax.swing.JFrame {
         );
 
         jMenu1.setText("Archivo");
+
+        nuevoJMenuItem1.setText("juego nuevo");
+        nuevoJMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoJMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(nuevoJMenuItem1);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Motores");
@@ -575,28 +588,34 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_palabrajTextFieldKeyTyped
 
     private void motor1JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor1JRadioButtonMenuItemActionPerformed
-        if (this.motor1JRadioButtonMenuItem.isSelected() == false) {
+//        if (this.motor1JRadioButtonMenuItem.isSelected() == false) {
             motor = new MotorTest();
             restart();
-        }
+            
+//        }
 
     }//GEN-LAST:event_motor1JRadioButtonMenuItemActionPerformed
 
     private void motor2JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor2JRadioButtonMenuItemActionPerformed
-        if (this.motor2JRadioButtonMenuItem.isSelected() == false) {
-        motor = new MotorAlumnos();
-        restart();
-        }        
+//        if (this.motor2JRadioButtonMenuItem.isSelected() == false) {
+            motor = new MotorAlumnos();
+            restart();           
+//        }        
 
     }//GEN-LAST:event_motor2JRadioButtonMenuItemActionPerformed
 
     private void motor3JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor3JRadioButtonMenuItemActionPerformed
-        if (this.motor2JRadioButtonMenuItem.isSelected() == false) {
-        motor = new MotorIngles();
-        restart();
-        }        
+//        if (this.motor3JRadioButtonMenuItem.isSelected() == false) {
+            motor = new MotorIngles();
+            restart();
+            
+//        }        
 
     }//GEN-LAST:event_motor3JRadioButtonMenuItemActionPerformed
+
+    private void nuevoJMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoJMenuItem1ActionPerformed
+        restart();
+    }//GEN-LAST:event_nuevoJMenuItem1ActionPerformed
 
     private void restart() {
         for (JLabel[] x : cuadricula) {
@@ -746,6 +765,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem motor2JRadioButtonMenuItem;
     private javax.swing.JRadioButtonMenuItem motor3JRadioButtonMenuItem;
     private javax.swing.ButtonGroup motoresButtonGroup;
+    private javax.swing.JMenuItem nuevoJMenuItem1;
     private javax.swing.JTextField palabrajTextField;
     private javax.swing.JPanel principaljPanel;
     private javax.swing.JLabel textojLabel1;
