@@ -31,8 +31,7 @@ public class MotorArchivo implements IMotor {
                 archivo.createNewFile();
             } catch (IOException iOException){}
         }
-        diccionario = GestorArchivos.values(archivo);
-        System.out.println("kk");
+        diccionario = GestorArchivos.values(archivo, 5);
                 
     }
     

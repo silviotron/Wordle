@@ -9,6 +9,7 @@ import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
 
+//.replaceAll("Á", "A").replaceAll("É", "E").replaceAll("Í", "I").replaceAll("Ó", "O").replaceAll("Ú", "Ú"));                    
 /**
  *
  * @author alumno
@@ -21,15 +22,57 @@ public class GestorArchivos {
             return new HashSet<>();
         }
         try(BufferedReader reader = new BufferedReader(new FileReader(f))){  
-            String s = reader.readLine();
+            String s = reader.readLine().trim().toUpperCase();
             while(s != null){
-                    set.add(s);
-                    s = reader.readLine();
+                set.add(s.trim().toUpperCase());
+                s = reader.readLine();
             }
+            System.out.println("");
 
         } catch (IOException ex) {}
         return set;
     }
+    
+    public static Set<String> values(File f,int length) {
+        Set<String> set = new HashSet<>();
+        if (!f.exists()) {
+            return new HashSet<>();
+        }
+        try(BufferedReader reader = new BufferedReader(new FileReader(f))){  
+            String s = reader.readLine().trim().toUpperCase();
+            while(s != null){
+                if (s.trim().length() == length) {
+                    set.add(s.trim().toUpperCase());
+                }
+                s = reader.readLine();
+            }
+            System.out.println("");
+
+        } catch (IOException ex) {}
+        return set;
+    }
+    
+    public static Set<String> values(File f,int length, boolean b) {
+        Set<String> set = new HashSet<>();
+        if (!f.exists()) {
+            return new HashSet<>();
+        }
+        try(BufferedReader reader = new BufferedReader(new FileReader(f))){  
+            String s = reader.readLine().trim().toUpperCase();
+            while(s != null){
+                if (s.trim().length() == length) {
+                    if (b) {
+                        s = s.replaceAll("Á", "A").replaceAll("É", "E").replaceAll("Í", "I").replaceAll("Ó", "O").replaceAll("Ú", "Ú");
+                    }
+                    set.add(s.trim().toUpperCase());
+                }
+                s = reader.readLine();
+            }
+            System.out.println("");
+
+        } catch (IOException ex) {}
+        return set;
+    }    
     
     public static void add(File f, String s){
         checkArchivo(f);        

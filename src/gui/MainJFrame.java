@@ -628,11 +628,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_nuevoJMenuItem1ActionPerformed
 
     private void motor4JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor4JRadioButtonMenuItemActionPerformed
-        if (!this.motor.getClass().equals(MotorArchivo.class)) {
             motor = new MotorArchivo();
             restart();
-            
-        }  
     }//GEN-LAST:event_motor4JRadioButtonMenuItemActionPerformed
 
     private void restart() {
