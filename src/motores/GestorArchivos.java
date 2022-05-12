@@ -39,14 +39,15 @@ public class GestorArchivos {
             return new HashSet<>();
         }
         try(BufferedReader reader = new BufferedReader(new FileReader(f))){  
-            String s = reader.readLine().trim().toUpperCase();
-            while(s != null){
-                if (s.trim().length() == length) {
-                    set.add(s.trim().toUpperCase());
-                }
-                s = reader.readLine();
+            String linea = reader.readLine().trim().toUpperCase();
+            while(linea != null){
+                for (String s : linea.split(" +")) {
+                    if (s.trim().length() == length) {
+                        set.add(s.trim().toUpperCase());
+                    }
+                }                
+                linea = reader.readLine();
             }
-            System.out.println("");
 
         } catch (IOException ex) {}
         return set;
@@ -58,17 +59,20 @@ public class GestorArchivos {
             return new HashSet<>();
         }
         try(BufferedReader reader = new BufferedReader(new FileReader(f))){  
-            String s = reader.readLine().trim().toUpperCase();
-            while(s != null){
-                if (s.trim().length() == length) {
-                    if (b) {
-                        s = s.replaceAll("Á", "A").replaceAll("É", "E").replaceAll("Í", "I").replaceAll("Ó", "O").replaceAll("Ú", "Ú");
+            String linea = reader.readLine().trim().toUpperCase();
+            while(linea != null){
+                for (String s : linea.split(" +")) {
+                    if (s.trim().length() == length) {
+                        if (b) {
+                            s = s.replaceAll("Á", "A").replaceAll("É", "E").replaceAll("Í", "I").replaceAll("Ó", "O").replaceAll("Ú", "Ú");
+                        }
+                        set.add(s.trim().toUpperCase());
                     }
-                    set.add(s.trim().toUpperCase());
+                                       
                 }
-                s = reader.readLine();
+                linea = reader.readLine(); 
+
             }
-            System.out.println("");
 
         } catch (IOException ex) {}
         return set;

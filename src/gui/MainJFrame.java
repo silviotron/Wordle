@@ -547,7 +547,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void palabrajTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_palabrajTextFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (fila < 6) {
+            if (fila <= 5) {
                 if (!cuadricula[fila][4].getText().isEmpty()) {
                     if (motor.checkPalabra(palabra)) {
                         palabras[fila] = palabra;
@@ -555,6 +555,9 @@ public class MainJFrame extends javax.swing.JFrame {
                         if (palabras[fila].equals(objetivo)) {
                             this.textojLabel1.setForeground(Color.green);
                             this.textojLabel1.setText("Ganaste perro.");
+                        }else if(fila == 5){
+                            this.textojLabel1.setForeground(Color.red);
+                            this.textojLabel1.setText("Perdiste perro. Era " + objetivo);                            
                         }
                         palabrajTextField.setText("");
                         fila++;
@@ -562,10 +565,6 @@ public class MainJFrame extends javax.swing.JFrame {
                     }
 
                 }
-            }
-            if (fila >= 6) {
-                this.textojLabel1.setForeground(Color.red);
-                this.textojLabel1.setText("Perdiste perro. Era " + objetivo);
             }
         }
         setPalabra();
@@ -649,7 +648,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     private void setPalabra() {
-        palabra = this.palabrajTextField.getText().toUpperCase().replaceAll("[^A-Z]", "");
+        palabra = this.palabrajTextField.getText().toUpperCase().replaceAll("[^A-ZÇÑÁÉÍÓÚ]", ""); //tildes: ÁÉÍÓÚ
 
         if (fila < 6) {
             setLetras();
