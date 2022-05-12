@@ -21,46 +21,49 @@ public class GestorArchivos {
         if (!f.exists()) {
             return new HashSet<>();
         }
-        try(BufferedReader reader = new BufferedReader(new FileReader(f))){  
-            String s = reader.readLine().trim().toUpperCase();
-            while(s != null){
-                set.add(s.trim().toUpperCase());
-                s = reader.readLine();
+        try ( BufferedReader reader = new BufferedReader(new FileReader(f))) {
+            String linea = reader.readLine().trim().toUpperCase();
+            while (linea != null) {
+                for (String s : linea.split(" +")) {
+                    set.add(s.trim().toUpperCase());
+                }
+                linea = reader.readLine();
             }
-            System.out.println("");
 
-        } catch (IOException ex) {}
+        } catch (IOException ex) {
+        }
         return set;
     }
-    
-    public static Set<String> values(File f,int length) {
+
+    public static Set<String> values(File f, int length) {
         Set<String> set = new HashSet<>();
         if (!f.exists()) {
             return new HashSet<>();
         }
-        try(BufferedReader reader = new BufferedReader(new FileReader(f))){  
+        try ( BufferedReader reader = new BufferedReader(new FileReader(f))) {
             String linea = reader.readLine().trim().toUpperCase();
-            while(linea != null){
+            while (linea != null) {
                 for (String s : linea.split(" +")) {
                     if (s.trim().length() == length) {
                         set.add(s.trim().toUpperCase());
                     }
-                }                
+                }
                 linea = reader.readLine();
             }
 
-        } catch (IOException ex) {}
+        } catch (IOException ex) {
+        }
         return set;
     }
-    
-    public static Set<String> values(File f,int length, boolean b) {
+
+    public static Set<String> values(File f, int length, boolean b) {
         Set<String> set = new HashSet<>();
         if (!f.exists()) {
             return new HashSet<>();
         }
-        try(BufferedReader reader = new BufferedReader(new FileReader(f))){  
+        try ( BufferedReader reader = new BufferedReader(new FileReader(f))) {
             String linea = reader.readLine().trim().toUpperCase();
-            while(linea != null){
+            while (linea != null) {
                 for (String s : linea.split(" +")) {
                     if (s.trim().length() == length) {
                         if (b) {
@@ -68,48 +71,55 @@ public class GestorArchivos {
                         }
                         set.add(s.trim().toUpperCase());
                     }
-                                       
+
                 }
-                linea = reader.readLine(); 
+                linea = reader.readLine();
 
             }
 
-        } catch (IOException ex) {}
+        } catch (IOException ex) {
+        }
         return set;
-    }    
-    
-    public static void add(File f, String s){
-        checkArchivo(f);        
-        try(BufferedWriter br = new BufferedWriter(new FileWriter(f))){  
+    }
+
+    public static void add(File f, String s) {
+        checkArchivo(f);
+        try ( BufferedWriter br = new BufferedWriter(new FileWriter(f))) {
             br.write(s);
             br.newLine();
-        } catch (IOException ex) {}        
+        } catch (IOException ex) {
+        }
     }
-    public static void add(File f, Set<String> set){
-        checkArchivo(f);        
-        try(BufferedWriter br = new BufferedWriter(new FileWriter(f))){  
+
+    public static void add(File f, Set<String> set) {
+        checkArchivo(f);
+        try ( BufferedWriter br = new BufferedWriter(new FileWriter(f))) {
             for (String s : set) {
                 br.write(s);
-                br.newLine();                
+                br.newLine();
             }
-        } catch (IOException ex) {}        
+        } catch (IOException ex) {
+        }
     }
-    public static void add(File f, String[] array){
+
+    public static void add(File f, String[] array) {
         checkArchivo(f);
-        try(BufferedWriter br = new BufferedWriter(new FileWriter(f))){  
+        try ( BufferedWriter br = new BufferedWriter(new FileWriter(f))) {
             for (String s : array) {
                 br.write(s);
-                br.newLine();                
+                br.newLine();
             }
-        } catch (IOException ex) {}        
+        } catch (IOException ex) {
+        }
     }
-    
-    public static void checkArchivo(File f){
+
+    public static void checkArchivo(File f) {
         if (!f.exists()) {
             f.getParentFile().mkdirs();
             try {
                 f.createNewFile();
-            } catch (IOException iOException){}
-        }        
+            } catch (IOException iOException) {
+            }
+        }
     }
 }

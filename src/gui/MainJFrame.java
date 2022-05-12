@@ -555,9 +555,9 @@ public class MainJFrame extends javax.swing.JFrame {
                         if (palabras[fila].equals(objetivo)) {
                             this.textojLabel1.setForeground(Color.green);
                             this.textojLabel1.setText("Ganaste perro.");
-                        }else if(fila == 5){
+                        } else if (fila == 5) {
                             this.textojLabel1.setForeground(Color.red);
-                            this.textojLabel1.setText("Perdiste perro. Era " + objetivo);                            
+                            this.textojLabel1.setText("Perdiste perro. Era " + objetivo);
                         }
                         palabrajTextField.setText("");
                         fila++;
@@ -600,7 +600,7 @@ public class MainJFrame extends javax.swing.JFrame {
         if (!this.motor.getClass().equals(MotorTest.class)) {
             motor = new MotorTest();
             restart();
-            
+
         }
 
     }//GEN-LAST:event_motor1JRadioButtonMenuItemActionPerformed
@@ -608,8 +608,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private void motor2JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor2JRadioButtonMenuItemActionPerformed
         if (!this.motor.getClass().equals(MotorAlumnos.class)) {
             motor = new MotorAlumnos();
-            restart();           
-        }        
+            restart();
+        }
 
     }//GEN-LAST:event_motor2JRadioButtonMenuItemActionPerformed
 
@@ -617,8 +617,8 @@ public class MainJFrame extends javax.swing.JFrame {
         if (!this.motor.getClass().equals(MotorIngles.class)) {
             motor = new MotorIngles();
             restart();
-            
-        }        
+
+        }
 
     }//GEN-LAST:event_motor3JRadioButtonMenuItemActionPerformed
 
@@ -627,8 +627,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_nuevoJMenuItem1ActionPerformed
 
     private void motor4JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor4JRadioButtonMenuItemActionPerformed
-            motor = new MotorArchivo();
-            restart();
+        motor = new MotorArchivo();
+        restart();
     }//GEN-LAST:event_motor4JRadioButtonMenuItemActionPerformed
 
     private void restart() {

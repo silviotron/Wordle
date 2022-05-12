@@ -13,7 +13,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-
 /**
  *
  * @author alumno
@@ -29,19 +28,22 @@ public class MotorArchivo implements IMotor {
             archivo.getParentFile().mkdirs();
             try {
                 archivo.createNewFile();
-            } catch (IOException iOException){}
+            } catch (IOException iOException) {
+            }
         }
         diccionario = GestorArchivos.values(archivo, 5);
-                
+
     }
-    
-    public void add(String s){
+
+    public void add(String s) {
         GestorArchivos.add(archivo, s);
     }
-    public void add(Set set){
+
+    public void add(Set set) {
         GestorArchivos.add(archivo, set);
     }
-    public void add(String[] array){
+
+    public void add(String[] array) {
         GestorArchivos.add(archivo, array);
     }
 
