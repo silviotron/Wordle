@@ -15,7 +15,7 @@ import java.util.Set;
  *
  * @author alumno
  */
-public class GestorArchivos {
+public class GestorArchivos{
 
     public static Set<String> values(File f) {
         Set<String> set = new LinkedHashSet<>();
@@ -36,7 +36,7 @@ public class GestorArchivos {
         return set;
     }
 
-    public static Set<String> values(File f, int length) {
+    public static Set<String> values(File f, int length){
         Set<String> set = new LinkedHashSet<>();
         if (!f.exists()) {
             return new HashSet<>();
