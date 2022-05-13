@@ -7,6 +7,7 @@ package motores;
 
 import java.io.*;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 //.replaceAll("Á", "A").replaceAll("É", "E").replaceAll("Í", "I").replaceAll("Ó", "O").replaceAll("Ú", "Ú"));                    
@@ -17,7 +18,7 @@ import java.util.Set;
 public class GestorArchivos {
 
     public static Set<String> values(File f) {
-        Set<String> set = new HashSet<>();
+        Set<String> set = new LinkedHashSet<>();
         if (!f.exists()) {
             return new HashSet<>();
         }
@@ -36,7 +37,7 @@ public class GestorArchivos {
     }
 
     public static Set<String> values(File f, int length) {
-        Set<String> set = new HashSet<>();
+        Set<String> set = new LinkedHashSet<>();
         if (!f.exists()) {
             return new HashSet<>();
         }
@@ -57,7 +58,7 @@ public class GestorArchivos {
     }
 
     public static Set<String> values(File f, int length, boolean b) {
-        Set<String> set = new HashSet<>();
+        Set<String> set = new LinkedHashSet<>();
         if (!f.exists()) {
             return new HashSet<>();
         }
