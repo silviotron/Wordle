@@ -4,9 +4,6 @@
  */
 package wordle;
 
-import gui.MainJFrame;
-import motores.*;
-
 /**
  *
  * @author silvi

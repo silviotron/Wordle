@@ -833,7 +833,7 @@ public class MainJFrame extends javax.swing.JFrame {
         TecladojPanel.add(TecladojButtonÑ);
 
         TecladojButtonEnter.setBackground(new java.awt.Color(100, 100, 100));
-        TecladojButtonEnter.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        TecladojButtonEnter.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         TecladojButtonEnter.setForeground(new java.awt.Color(255, 255, 255));
         TecladojButtonEnter.setText("✔");
         TecladojButtonEnter.setFocusable(false);
@@ -961,10 +961,12 @@ public class MainJFrame extends javax.swing.JFrame {
         TecladojPanel.add(TecladojButtonM);
 
         TecladojButtonDelete.setBackground(new java.awt.Color(100, 100, 100));
-        TecladojButtonDelete.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        TecladojButtonDelete.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
         TecladojButtonDelete.setForeground(new java.awt.Color(255, 255, 255));
         TecladojButtonDelete.setText("⬅");
+        TecladojButtonDelete.setAlignmentY(0.0F);
         TecladojButtonDelete.setFocusable(false);
+        TecladojButtonDelete.setMargin(new java.awt.Insets(0, 0, 0, 0));
         TecladojButtonDelete.setMaximumSize(new java.awt.Dimension(35, 25));
         TecladojButtonDelete.setMinimumSize(new java.awt.Dimension(35, 25));
         TecladojButtonDelete.setPreferredSize(new java.awt.Dimension(35, 25));
@@ -980,7 +982,7 @@ public class MainJFrame extends javax.swing.JFrame {
         fondojPanelLayout.setHorizontalGroup(
             fondojPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fondojPanelLayout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(fondojPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(TecladojPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(fondojPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -999,8 +1001,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textojLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TecladojPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(TecladojPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
 
         jMenu1.setText("Archivo");
@@ -1067,7 +1069,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(139, 139, 139)
                     .addComponent(palabrajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(188, Short.MAX_VALUE)))
+                    .addContainerGap(185, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1076,7 +1078,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(210, 210, 210)
                     .addComponent(palabrajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(360, Short.MAX_VALUE)))
+                    .addContainerGap(350, Short.MAX_VALUE)))
         );
 
         pack();
@@ -1088,29 +1090,34 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void palabrajTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_palabrajTextFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (fila <= 5) {
-                if (!cuadricula[fila][4].getText().isEmpty()) {
-                    if (motor.checkPalabra(palabra)) {
-                        palabras[fila] = palabra;
-                        setColores();
-                        if (palabras[fila].equals(objetivo)) {
-                            this.textojLabel1.setForeground(Color.green);
-                            this.textojLabel1.setText("Ganaste perro.");
-                        } else if (fila == 5) {
-                            this.textojLabel1.setForeground(Color.red);
-                            this.textojLabel1.setText("Perdiste perro. Era " + objetivo);
-                        }
-                        palabrajTextField.setText("");
-                        fila++;
-
-                    }
-
-                }
-            }
+            enter();
         }
         setPalabra();
     }//GEN-LAST:event_palabrajTextFieldKeyPressed
 
+    private void enter(){
+        if (fila <= 5) {
+            if (!cuadricula[fila][4].getText().isEmpty()) {
+                if (motor.checkPalabra(palabra)) {
+                    palabras[fila] = palabra;
+                    setColores();
+                    if (palabras[fila].equals(objetivo)) {
+                        this.textojLabel1.setForeground(Color.green);
+                        this.textojLabel1.setText("Ganaste mi rey");
+                        fila = 6;
+                    } else if (fila == 5) {
+                        this.textojLabel1.setForeground(Color.red);
+                        this.textojLabel1.setText("Perdiste mi pana, era " + objetivo);
+                        fila = 6;
+                    }
+                    palabrajTextField.setText("");
+                    fila++;
+
+                }
+
+            }
+        }        
+    }
     private void setColores() {
         for (int i = 0; i < 5; i++) {
             if (objetivo.charAt(i) == palabras[fila].charAt(i)) {
@@ -1283,7 +1290,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_TecladojButtonÑActionPerformed
 
     private void TecladojButtonEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TecladojButtonEnterActionPerformed
-        // TODO add your handling code here:
+        enter();
     }//GEN-LAST:event_TecladojButtonEnterActionPerformed
 
     private void TecladojButtonZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TecladojButtonZActionPerformed
@@ -1344,7 +1351,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     private void setPalabra() {
-        palabra = this.palabrajTextField.getText().toUpperCase().replaceAll("[^A-ZÇÑÁÉÍÓÚ]", ""); //tildes: ÁÉÍÓÚ
+        palabra = this.palabrajTextField.getText().toUpperCase().replaceAll("[^A-ZÑÁÉÍÓÚ]", ""); //tildes: ÁÉÍÓÚ
 
         if (fila < 6) {
             setLetras();
