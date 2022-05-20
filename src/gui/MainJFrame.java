@@ -22,6 +22,14 @@ import motores.*;
  * @author silvi
  */
 public class MainJFrame extends javax.swing.JFrame {
+    
+    private static final Color COLOR_NEGRO = new Color(55,55,55);
+    private static final Color COLOR_GRIS = new Color(100,100,100);
+    private static final Color COLOR_BLANCO = new Color(255,255,255);
+    private static final Color COLOR_AMARILLO = new Color(255,201,0);
+    private static final Color COLOR_ROJO = new Color(255,60,14);
+    private static final Color COLOR_VERDE = new Color(150,255,70);
+    private static final Color COLOR_CLARO = new Color(150,150,150);
 
     private IMotor motor;
     private String objetivo;
@@ -29,7 +37,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private String palabras[];
     private int fila = 0;
     private JLabel cuadricula[][];
-    private JButton teclado[];
     Map<Character, JButton> mapaTeclado;
 
     /**
@@ -38,16 +45,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame(IMotor motor) {
 
         initComponents();
-        JLabel eje[][] = {
-            {this.jLabel0_0, this.jLabel0_1, this.jLabel0_2, this.jLabel0_3, this.jLabel0_4},
-            {this.jLabel1_0, this.jLabel1_1, this.jLabel1_2, this.jLabel1_3, this.jLabel1_4},
-            {this.jLabel2_0, this.jLabel2_1, this.jLabel2_2, this.jLabel2_3, this.jLabel2_4},
-            {this.jLabel3_0, this.jLabel3_1, this.jLabel3_2, this.jLabel3_3, this.jLabel3_4},
-            {this.jLabel4_0, this.jLabel4_1, this.jLabel4_2, this.jLabel4_3, this.jLabel4_4},
-            {this.jLabel5_0, this.jLabel5_1, this.jLabel5_2, this.jLabel5_3, this.jLabel5_4}
-        };
-        inicializarTeclado();
-        cuadricula = eje;
+        inicializar();
         this.motor = motor;
         objetivo = motor.obtenerPalabraAleatoria();
         palabras = new String[6];
@@ -57,16 +55,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     public MainJFrame() {
         initComponents();
-        JLabel eje[][] = {
-            {this.jLabel0_0, this.jLabel0_1, this.jLabel0_2, this.jLabel0_3, this.jLabel0_4},
-            {this.jLabel1_0, this.jLabel1_1, this.jLabel1_2, this.jLabel1_3, this.jLabel1_4},
-            {this.jLabel2_0, this.jLabel2_1, this.jLabel2_2, this.jLabel2_3, this.jLabel2_4},
-            {this.jLabel3_0, this.jLabel3_1, this.jLabel3_2, this.jLabel3_3, this.jLabel3_4},
-            {this.jLabel4_0, this.jLabel4_1, this.jLabel4_2, this.jLabel4_3, this.jLabel4_4},
-            {this.jLabel5_0, this.jLabel5_1, this.jLabel5_2, this.jLabel5_3, this.jLabel5_4}
-        };
-        inicializarTeclado();
-        cuadricula = eje;
+        inicializar();
         this.motor = new MotorTest();
         objetivo = motor.obtenerPalabraAleatoria();
         palabras = new String[6];
@@ -78,7 +67,16 @@ public class MainJFrame extends javax.swing.JFrame {
         //TODO: implementar el funcionamiento del enter para poder saltar de linea
     }
     
-    private void inicializarTeclado(){
+    private void inicializar(){
+        JLabel eje[][] = {
+            {this.jLabel0_0, this.jLabel0_1, this.jLabel0_2, this.jLabel0_3, this.jLabel0_4},
+            {this.jLabel1_0, this.jLabel1_1, this.jLabel1_2, this.jLabel1_3, this.jLabel1_4},
+            {this.jLabel2_0, this.jLabel2_1, this.jLabel2_2, this.jLabel2_3, this.jLabel2_4},
+            {this.jLabel3_0, this.jLabel3_1, this.jLabel3_2, this.jLabel3_3, this.jLabel3_4},
+            {this.jLabel4_0, this.jLabel4_1, this.jLabel4_2, this.jLabel4_3, this.jLabel4_4},
+            {this.jLabel5_0, this.jLabel5_1, this.jLabel5_2, this.jLabel5_3, this.jLabel5_4}
+        }; 
+        cuadricula = eje;        
         this.mapaTeclado = new HashMap<>();
         mapaTeclado.put('Q', TecladojButtonQ);
         mapaTeclado.put('W', TecladojButtonW);
@@ -226,11 +224,12 @@ public class MainJFrame extends javax.swing.JFrame {
 
         fondojPanel.setBackground(new java.awt.Color(51, 51, 51));
 
-        principaljPanel.setBackground(new java.awt.Color(102, 102, 102));
+        principaljPanel.setBackground(new java.awt.Color(100, 100, 100));
         principaljPanel.setLayout(new java.awt.GridLayout(6, 5));
 
+        jLabel0_0.setBackground(new java.awt.Color(60, 60, 60));
         jLabel0_0.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel0_0.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel0_0.setForeground(new java.awt.Color(150, 150, 150));
         jLabel0_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel0_0.setAlignmentX(0.5F);
         jLabel0_0.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -238,8 +237,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel0_0.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel0_0);
 
+        jLabel0_1.setBackground(new java.awt.Color(60, 60, 60));
         jLabel0_1.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel0_1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel0_1.setForeground(new java.awt.Color(150, 150, 150));
         jLabel0_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel0_1.setAlignmentX(0.5F);
         jLabel0_1.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -247,8 +247,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel0_1.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel0_1);
 
+        jLabel0_2.setBackground(new java.awt.Color(60, 60, 60));
         jLabel0_2.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel0_2.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel0_2.setForeground(new java.awt.Color(150, 150, 150));
         jLabel0_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel0_2.setAlignmentX(0.5F);
         jLabel0_2.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -256,8 +257,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel0_2.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel0_2);
 
+        jLabel0_3.setBackground(new java.awt.Color(60, 60, 60));
         jLabel0_3.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel0_3.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel0_3.setForeground(new java.awt.Color(150, 150, 150));
         jLabel0_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel0_3.setAlignmentX(0.5F);
         jLabel0_3.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -265,8 +267,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel0_3.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel0_3);
 
+        jLabel0_4.setBackground(new java.awt.Color(60, 60, 60));
         jLabel0_4.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel0_4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel0_4.setForeground(new java.awt.Color(150, 150, 150));
         jLabel0_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel0_4.setAlignmentX(0.5F);
         jLabel0_4.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -274,8 +277,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel0_4.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel0_4);
 
+        jLabel1_0.setBackground(new java.awt.Color(60, 60, 60));
         jLabel1_0.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel1_0.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel1_0.setForeground(new java.awt.Color(150, 150, 150));
         jLabel1_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1_0.setAlignmentX(0.5F);
         jLabel1_0.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -283,8 +287,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel1_0.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel1_0);
 
+        jLabel1_1.setBackground(new java.awt.Color(60, 60, 60));
         jLabel1_1.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel1_1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel1_1.setForeground(new java.awt.Color(150, 150, 150));
         jLabel1_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1_1.setAlignmentX(0.5F);
         jLabel1_1.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -292,8 +297,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel1_1.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel1_1);
 
+        jLabel1_2.setBackground(new java.awt.Color(60, 60, 60));
         jLabel1_2.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel1_2.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel1_2.setForeground(new java.awt.Color(150, 150, 150));
         jLabel1_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1_2.setAlignmentX(0.5F);
         jLabel1_2.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -301,8 +307,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel1_2.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel1_2);
 
+        jLabel1_3.setBackground(new java.awt.Color(60, 60, 60));
         jLabel1_3.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel1_3.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel1_3.setForeground(new java.awt.Color(150, 150, 150));
         jLabel1_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1_3.setAlignmentX(0.5F);
         jLabel1_3.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -310,8 +317,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel1_3.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel1_3);
 
+        jLabel1_4.setBackground(new java.awt.Color(60, 60, 60));
         jLabel1_4.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel1_4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel1_4.setForeground(new java.awt.Color(150, 150, 150));
         jLabel1_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1_4.setAlignmentX(0.5F);
         jLabel1_4.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -319,8 +327,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel1_4.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel1_4);
 
+        jLabel2_0.setBackground(new java.awt.Color(60, 60, 60));
         jLabel2_0.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel2_0.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel2_0.setForeground(new java.awt.Color(150, 150, 150));
         jLabel2_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2_0.setAlignmentX(0.5F);
         jLabel2_0.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -328,8 +337,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2_0.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel2_0);
 
+        jLabel2_1.setBackground(new java.awt.Color(60, 60, 60));
         jLabel2_1.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel2_1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel2_1.setForeground(new java.awt.Color(150, 150, 150));
         jLabel2_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2_1.setAlignmentX(0.5F);
         jLabel2_1.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -337,8 +347,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2_1.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel2_1);
 
+        jLabel2_2.setBackground(new java.awt.Color(60, 60, 60));
         jLabel2_2.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel2_2.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel2_2.setForeground(new java.awt.Color(150, 150, 150));
         jLabel2_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2_2.setAlignmentX(0.5F);
         jLabel2_2.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -346,8 +357,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2_2.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel2_2);
 
+        jLabel2_3.setBackground(new java.awt.Color(60, 60, 60));
         jLabel2_3.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel2_3.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel2_3.setForeground(new java.awt.Color(150, 150, 150));
         jLabel2_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2_3.setAlignmentX(0.5F);
         jLabel2_3.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -355,8 +367,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2_3.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel2_3);
 
+        jLabel2_4.setBackground(new java.awt.Color(60, 60, 60));
         jLabel2_4.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel2_4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel2_4.setForeground(new java.awt.Color(150, 150, 150));
         jLabel2_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2_4.setAlignmentX(0.5F);
         jLabel2_4.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -364,8 +377,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2_4.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel2_4);
 
+        jLabel3_0.setBackground(new java.awt.Color(60, 60, 60));
         jLabel3_0.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel3_0.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel3_0.setForeground(new java.awt.Color(150, 150, 150));
         jLabel3_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3_0.setAlignmentX(0.5F);
         jLabel3_0.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -373,8 +387,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel3_0.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel3_0);
 
+        jLabel3_1.setBackground(new java.awt.Color(60, 60, 60));
         jLabel3_1.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel3_1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel3_1.setForeground(new java.awt.Color(150, 150, 150));
         jLabel3_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3_1.setAlignmentX(0.5F);
         jLabel3_1.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -382,8 +397,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel3_1.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel3_1);
 
+        jLabel3_2.setBackground(new java.awt.Color(60, 60, 60));
         jLabel3_2.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel3_2.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel3_2.setForeground(new java.awt.Color(150, 150, 150));
         jLabel3_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3_2.setAlignmentX(0.5F);
         jLabel3_2.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -391,8 +407,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel3_2.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel3_2);
 
+        jLabel3_3.setBackground(new java.awt.Color(60, 60, 60));
         jLabel3_3.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel3_3.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel3_3.setForeground(new java.awt.Color(150, 150, 150));
         jLabel3_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3_3.setAlignmentX(0.5F);
         jLabel3_3.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -400,8 +417,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel3_3.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel3_3);
 
+        jLabel3_4.setBackground(new java.awt.Color(60, 60, 60));
         jLabel3_4.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel3_4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel3_4.setForeground(new java.awt.Color(150, 150, 150));
         jLabel3_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3_4.setAlignmentX(0.5F);
         jLabel3_4.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -409,8 +427,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel3_4.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel3_4);
 
+        jLabel4_0.setBackground(new java.awt.Color(60, 60, 60));
         jLabel4_0.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel4_0.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel4_0.setForeground(new java.awt.Color(150, 150, 150));
         jLabel4_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4_0.setAlignmentX(0.5F);
         jLabel4_0.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -418,8 +437,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel4_0.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel4_0);
 
+        jLabel4_1.setBackground(new java.awt.Color(60, 60, 60));
         jLabel4_1.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel4_1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel4_1.setForeground(new java.awt.Color(150, 150, 150));
         jLabel4_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4_1.setAlignmentX(0.5F);
         jLabel4_1.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -427,8 +447,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel4_1.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel4_1);
 
+        jLabel4_2.setBackground(new java.awt.Color(60, 60, 60));
         jLabel4_2.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel4_2.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel4_2.setForeground(new java.awt.Color(150, 150, 150));
         jLabel4_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4_2.setAlignmentX(0.5F);
         jLabel4_2.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -436,8 +457,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel4_2.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel4_2);
 
+        jLabel4_3.setBackground(new java.awt.Color(60, 60, 60));
         jLabel4_3.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel4_3.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel4_3.setForeground(new java.awt.Color(150, 150, 150));
         jLabel4_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4_3.setAlignmentX(0.5F);
         jLabel4_3.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -445,8 +467,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel4_3.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel4_3);
 
+        jLabel4_4.setBackground(new java.awt.Color(60, 60, 60));
         jLabel4_4.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel4_4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel4_4.setForeground(new java.awt.Color(150, 150, 150));
         jLabel4_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4_4.setAlignmentX(0.5F);
         jLabel4_4.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -454,8 +477,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel4_4.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel4_4);
 
+        jLabel5_0.setBackground(new java.awt.Color(60, 60, 60));
         jLabel5_0.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel5_0.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5_0.setForeground(new java.awt.Color(150, 150, 150));
         jLabel5_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5_0.setAlignmentX(0.5F);
         jLabel5_0.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -463,8 +487,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel5_0.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel5_0);
 
+        jLabel5_1.setBackground(new java.awt.Color(60, 60, 60));
         jLabel5_1.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel5_1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5_1.setForeground(new java.awt.Color(150, 150, 150));
         jLabel5_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5_1.setAlignmentX(0.5F);
         jLabel5_1.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -472,8 +497,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel5_1.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel5_1);
 
+        jLabel5_2.setBackground(new java.awt.Color(60, 60, 60));
         jLabel5_2.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel5_2.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5_2.setForeground(new java.awt.Color(150, 150, 150));
         jLabel5_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5_2.setAlignmentX(0.5F);
         jLabel5_2.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -481,8 +507,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel5_2.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel5_2);
 
+        jLabel5_3.setBackground(new java.awt.Color(60, 60, 60));
         jLabel5_3.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel5_3.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5_3.setForeground(new java.awt.Color(150, 150, 150));
         jLabel5_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5_3.setAlignmentX(0.5F);
         jLabel5_3.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -490,8 +517,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel5_3.setPreferredSize(new java.awt.Dimension(50, 50));
         principaljPanel.add(jLabel5_3);
 
+        jLabel5_4.setBackground(new java.awt.Color(60, 60, 60));
         jLabel5_4.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jLabel5_4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5_4.setForeground(new java.awt.Color(150, 150, 150));
         jLabel5_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5_4.setAlignmentX(0.5F);
         jLabel5_4.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -1102,11 +1130,11 @@ public class MainJFrame extends javax.swing.JFrame {
                     palabras[fila] = palabra;
                     setColores();
                     if (palabras[fila].equals(objetivo)) {
-                        this.textojLabel1.setForeground(Color.green);
+                        this.textojLabel1.setForeground(COLOR_VERDE);
                         this.textojLabel1.setText("Ganaste mi rey");
                         fila = 6;
                     } else if (fila == 5) {
-                        this.textojLabel1.setForeground(Color.red);
+                        this.textojLabel1.setForeground(COLOR_ROJO);
                         this.textojLabel1.setText("Perdiste mi pana, era " + objetivo);
                         fila = 6;
                     }
@@ -1121,40 +1149,22 @@ public class MainJFrame extends javax.swing.JFrame {
     private void setColores() {
         for (int i = 0; i < 5; i++) {
             if (objetivo.charAt(i) == palabras[fila].charAt(i)) {
-                cuadricula[fila][i].setForeground(Color.green);
-                mapaTeclado.get(palabras[fila].charAt(i)).setBackground(Color.green);
+                cuadricula[fila][i].setForeground(COLOR_VERDE);
+                mapaTeclado.get(palabras[fila].charAt(i)).setBackground(COLOR_VERDE);
             } else if (objetivo.contains(palabras[fila].charAt(i) + "")) {
-                cuadricula[fila][i].setForeground(Color.yellow);
-                if (!mapaTeclado.get(palabras[fila].charAt(i)).getBackground().equals(Color.green)) {
-                    mapaTeclado.get(palabras[fila].charAt(i)).setBackground(Color.yellow);
+                cuadricula[fila][i].setForeground(COLOR_AMARILLO);
+                if (!mapaTeclado.get(palabras[fila].charAt(i)).getBackground().equals(COLOR_VERDE)) {
+                    mapaTeclado.get(palabras[fila].charAt(i)).setBackground(COLOR_AMARILLO);
                 }
                 
             } else {
-                cuadricula[fila][i].setForeground(Color.black);
-                mapaTeclado.get(palabras[fila].charAt(i)).setBackground(Color.black);
+                cuadricula[fila][i].setForeground(COLOR_NEGRO);
+                mapaTeclado.get(palabras[fila].charAt(i)).setBackground(COLOR_NEGRO);
+//                mapaTeclado.get(palabras[fila].charAt(i)).setBorder(null);
             }
         }
     }
 
-    private void setColoresTeclado(char c) {
-        switch (c) {
-            case 'A':
-                TecladojButtonA.setBackground(Color.green);
-                break;
-            case 'B':
-                TecladojButtonB.setBackground(Color.green);
-                break;
-            case 'C':
-                TecladojButtonD.setBackground(Color.green);
-                break;
-            case 'E':
-                TecladojButtonE.setBackground(Color.green);
-                break;
-            default:
-                break;
-        }
-        
-    }
 
     private void palabrajTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_palabrajTextFieldKeyReleased
         setPalabra();
@@ -1333,12 +1343,12 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void restart() {                
         for (JButton x : mapaTeclado.values()) {
-            x.setBackground(Color.gray);
+            x.setBackground(COLOR_GRIS);
         }
         for (JLabel[] x : cuadricula) {
             for (JLabel y : x) {
                 y.setText("");
-                y.setForeground(Color.gray);
+                y.setForeground(COLOR_CLARO);
             }
         }
         for (String p : palabras) {
