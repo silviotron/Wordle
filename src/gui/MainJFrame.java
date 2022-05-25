@@ -1182,7 +1182,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 
             } else {
                 cuadricula[fila][i].setForeground(COLOR_NEGRO);
-                if (!mapaTeclado.get(palabras[fila].charAt(i)).getBackground().equals(COLOR_VERDE)) {
+                if (!mapaTeclado.get(palabras[fila].charAt(i)).getBackground().equals(COLOR_VERDE) && !mapaTeclado.get(palabras[fila].charAt(i)).getBackground().equals(COLOR_AMARILLO)) {
                     mapaTeclado.get(palabras[fila].charAt(i)).setBackground(COLOR_NEGRO);
                 }                
             }          
