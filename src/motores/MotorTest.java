@@ -19,6 +19,16 @@ public class MotorTest implements IMotor{
     public String obtenerPalabraAleatoria() {
         return "CICLO";
     }
+
+    @Override
+    public boolean add(String s) {
+        return true;
+    }
+
+    @Override
+    public boolean remove(String s) {
+        return true;
+    }
     
     
 }

@@ -64,21 +64,33 @@ public class MotorArchivo implements IMotor {
 
     }
     
-    public void add(String s){
+    @Override
+    public boolean add(String s) {        
+        if (diccionario.add(s)) {
+            try ( OutputStream os = new BufferedOutputStream(new FileOutputStream(archivo2));  ObjectOutputStream out = new ObjectOutputStream(os)) {
+                out.writeObject(diccionario);
+            } catch (Exception e) {
+            } 
+            return true;
+        } else {
+            return false;
         
+        }    
     }
 
-    /*public void add(String s) {
-        GestorArchivos.add(archivo, s);
+    @Override
+    public boolean remove(String s) {
+        if (diccionario.remove(s)) {
+            try ( OutputStream os = new BufferedOutputStream(new FileOutputStream(archivo2));  ObjectOutputStream out = new ObjectOutputStream(os)) {
+                out.writeObject(diccionario);
+            } catch (Exception e) {
+            } 
+            return true;
+        } else {
+            return false;
+        
+        }    
     }
-
-    public void add(Set set) {
-        GestorArchivos.add(archivo, set);
-    }
-
-    public void add(String[] array) {
-        GestorArchivos.add(archivo, array);
-    }*/
 
     @Override
     public boolean checkPalabra(String s) {

@@ -4,17 +4,21 @@
  */
 package gui;
 
+import motores.IMotor;
+
 /**
  *
  * @author silvi
  */
 public class EditMotorJDialog extends javax.swing.JDialog {
-
+    
+    private static IMotor motor ;
     /**
      * Creates new form EditMotorJDialog
      */
-    public EditMotorJDialog(java.awt.Frame parent, boolean modal) {
+    public EditMotorJDialog(java.awt.Frame parent, boolean modal, IMotor motor) {
         super(parent, modal);
+        this.motor = motor;
         initComponents();
     }
 
@@ -32,11 +36,13 @@ public class EditMotorJDialog extends javax.swing.JDialog {
         altaJLabel = new javax.swing.JLabel();
         bajaJLabel = new javax.swing.JLabel();
         altaJPanel = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        altaJTextField = new javax.swing.JTextField();
+        altaJButton = new javax.swing.JButton();
+        ErrorAltaJLabel = new javax.swing.JLabel();
         bajaJPanel = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        bajaJTextField = new javax.swing.JTextField();
+        bajaJButton = new javax.swing.JButton();
+        ErrorBajaJLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -59,83 +65,106 @@ public class EditMotorJDialog extends javax.swing.JDialog {
 
         altaJPanel.setBackground(new java.awt.Color(60, 60, 60));
 
-        jTextField1.setColumns(5);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        altaJTextField.setColumns(5);
+        altaJTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                altaJTextFieldActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Alta");
+        altaJButton.setText("Alta");
+        altaJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                altaJButtonActionPerformed(evt);
+            }
+        });
+
+        ErrorAltaJLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout altaJPanelLayout = new javax.swing.GroupLayout(altaJPanel);
         altaJPanel.setLayout(altaJPanelLayout);
         altaJPanelLayout.setHorizontalGroup(
             altaJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(altaJPanelLayout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(150, 150, 150)
+                .addComponent(altaJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(altaJButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(ErrorAltaJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         altaJPanelLayout.setVerticalGroup(
             altaJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(altaJPanelLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(25, 25, 25)
                 .addGroup(altaJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addComponent(altaJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(altaJButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ErrorAltaJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         bajaJPanel.setBackground(new java.awt.Color(60, 60, 60));
 
-        jTextField2.setColumns(5);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        bajaJTextField.setColumns(5);
+        bajaJTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                bajaJTextFieldActionPerformed(evt);
             }
         });
 
-        jButton2.setText("baja");
+        bajaJButton.setText("baja");
+        bajaJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bajaJButtonActionPerformed(evt);
+            }
+        });
+
+        ErrorBajaJLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout bajaJPanelLayout = new javax.swing.GroupLayout(bajaJPanel);
         bajaJPanel.setLayout(bajaJPanelLayout);
         bajaJPanelLayout.setHorizontalGroup(
             bajaJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bajaJPanelLayout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(154, 154, 154)
+                .addComponent(bajaJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addComponent(bajaJButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bajaJPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ErrorBajaJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         bajaJPanelLayout.setVerticalGroup(
             bajaJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bajaJPanelLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(25, 25, 25)
                 .addGroup(bajaJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addComponent(bajaJButton)
+                    .addComponent(bajaJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ErrorBajaJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(altaJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(altaJPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tituloJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
                     .addComponent(bajaJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bajaJLabel)
-                            .addComponent(altaJLabel))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(tituloJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(altaJLabel)
+                            .addComponent(bajaJLabel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -146,12 +175,12 @@ public class EditMotorJDialog extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(altaJLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(altaJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(altaJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(bajaJLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bajaJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,13 +197,53 @@ public class EditMotorJDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void altaJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaJTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_altaJTextFieldActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void bajaJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajaJTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_bajaJTextFieldActionPerformed
+
+    private void altaJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaJButtonActionPerformed
+        String palabra = altaJTextField.getText().toUpperCase();
+        if (palabra.matches("[A-Z]{5}")) {
+            if (!motor.checkPalabra(palabra)) {
+                motor.add(palabra);
+                ErrorAltaJLabel.setForeground(MainJFrame.COLOR_VERDE);
+                ErrorAltaJLabel.setText("palabra dada de alta correctamente");
+            }else{
+                ErrorAltaJLabel.setForeground(MainJFrame.COLOR_ROJO);
+                ErrorAltaJLabel.setText("Error. la palabra ya existe");                
+            }
+
+            
+        }else{
+            ErrorAltaJLabel.setForeground(MainJFrame.COLOR_ROJO);
+            ErrorAltaJLabel.setText("Error. la palabra tiene que ser de 5 letras");
+            
+        }
+    }//GEN-LAST:event_altaJButtonActionPerformed
+
+    private void bajaJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajaJButtonActionPerformed
+        String palabra = bajaJTextField.getText().toUpperCase();
+        if (palabra.matches("[A-Z]{5}")) {
+            if (motor.checkPalabra(palabra)) {
+                motor.remove(palabra);
+                ErrorBajaJLabel.setForeground(MainJFrame.COLOR_VERDE);
+                ErrorBajaJLabel.setText("palabra dada de baja correctamente");
+            }else{
+                ErrorBajaJLabel.setForeground(MainJFrame.COLOR_ROJO);
+                ErrorBajaJLabel.setText("Error");                
+            }
+
+            
+        }else{
+            ErrorBajaJLabel.setForeground(MainJFrame.COLOR_ROJO);
+            ErrorBajaJLabel.setText("Error. la palabra tiene que ser de 5 letras");
+            
+        }
+    }//GEN-LAST:event_bajaJButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,7 +275,7 @@ public class EditMotorJDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EditMotorJDialog dialog = new EditMotorJDialog(new javax.swing.JFrame(), true);
+                EditMotorJDialog dialog = new EditMotorJDialog(new javax.swing.JFrame(), true, motor);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -219,15 +288,17 @@ public class EditMotorJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ErrorAltaJLabel;
+    private javax.swing.JLabel ErrorBajaJLabel;
+    private javax.swing.JButton altaJButton;
     private javax.swing.JLabel altaJLabel;
     private javax.swing.JPanel altaJPanel;
+    private javax.swing.JTextField altaJTextField;
+    private javax.swing.JButton bajaJButton;
     private javax.swing.JLabel bajaJLabel;
     private javax.swing.JPanel bajaJPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTextField bajaJTextField;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel tituloJLabel;
     // End of variables declaration//GEN-END:variables
 }

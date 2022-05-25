@@ -23,13 +23,13 @@ import motores.*;
  */
 public class MainJFrame extends javax.swing.JFrame {
     
-    private static final Color COLOR_NEGRO = new Color(55,55,55);
-    private static final Color COLOR_GRIS = new Color(100,100,100);
-    private static final Color COLOR_BLANCO = new Color(255,255,255);
-    private static final Color COLOR_AMARILLO = new Color(255,201,0);
-    private static final Color COLOR_ROJO = new Color(255,60,14);
-    private static final Color COLOR_VERDE = new Color(150,255,70);
-    private static final Color COLOR_CLARO = new Color(150,150,150);
+    protected static final Color COLOR_NEGRO = new Color(55,55,55);
+    protected static final Color COLOR_GRIS = new Color(100,100,100);
+    protected static final Color COLOR_BLANCO = new Color(255,255,255);
+    protected static final Color COLOR_AMARILLO = new Color(255,201,0);
+    protected static final Color COLOR_ROJO = new Color(255,60,14);
+    protected static final Color COLOR_VERDE = new Color(150,255,70);
+    protected static final Color COLOR_CLARO = new Color(150,150,150);
 
     private IMotor motor;
     private Map<Character, Integer> mapaObjetivo;   
@@ -206,6 +206,7 @@ public class MainJFrame extends javax.swing.JFrame {
         motor1JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         motor2JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         motor4JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -236,7 +237,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        fondojPanel.setBackground(new java.awt.Color(50, 50, 50));
+        fondojPanel.setBackground(new java.awt.Color(51, 51, 51));
 
         principaljPanel.setBackground(new java.awt.Color(100, 100, 100));
         principaljPanel.setLayout(new java.awt.GridLayout(6, 5));
@@ -1089,6 +1090,14 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         jMenu2.add(motor4JRadioButtonMenuItem);
 
+        jMenuItem1.setText("administrar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -1152,7 +1161,6 @@ public class MainJFrame extends javax.swing.JFrame {
         }        
     }
     private void setColores() {
-        StringBuilder objetivo = new StringBuilder(this.objetivo);
         //Primero cuenta las palabras que serian verdes
         for (int i = 0; i < 5; i++) {
             if (objetivo.charAt(i) == palabras[fila].charAt(i)) {
@@ -1349,6 +1357,11 @@ public class MainJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TecladojButtonDeleteActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        EditMotorJDialog editMotorJDialog = new EditMotorJDialog(this,true,this.motor);
+        editMotorJDialog.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     private void restart() {                
         for (JButton x : mapaTeclado.values()) {
             x.setBackground(COLOR_GRIS);
@@ -1527,6 +1540,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JRadioButtonMenuItem motor1JRadioButtonMenuItem;
     private javax.swing.JRadioButtonMenuItem motor2JRadioButtonMenuItem;
     private javax.swing.JRadioButtonMenuItem motor4JRadioButtonMenuItem;

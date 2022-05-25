@@ -12,5 +12,7 @@ public interface IMotor {
 
     public abstract boolean checkPalabra(String s);
     public abstract String obtenerPalabraAleatoria();
+    public abstract boolean add(String s);
+    public abstract boolean remove(String s);
     
 }

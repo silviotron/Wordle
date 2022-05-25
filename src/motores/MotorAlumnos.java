@@ -62,4 +62,14 @@ public class MotorAlumnos implements IMotor {
         return new String(array[(int) (Math.random() * diccionario.size())]);
     }
 
+    @Override
+    public boolean add(String s) {
+        return diccionario.add(s);
+    }
+
+    @Override
+    public boolean remove(String s) {
+        return diccionario.remove(s);
+    }
+
 }
