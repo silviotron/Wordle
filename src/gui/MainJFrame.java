@@ -32,6 +32,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private static final Color COLOR_CLARO = new Color(150,150,150);
 
     private IMotor motor;
+    private Map<Character, Integer> mapaObjetivo;   
     private String objetivo;
     private String palabra;
     private String palabras[];
@@ -48,6 +49,7 @@ public class MainJFrame extends javax.swing.JFrame {
         inicializar();
         this.motor = motor;
         objetivo = motor.obtenerPalabraAleatoria();
+        mapaObjetivo = crearMapaObjetivo();
         palabras = new String[6];
 
         //TODO: implementar el funcionamiento del enter para poder saltar de linea
@@ -58,13 +60,26 @@ public class MainJFrame extends javax.swing.JFrame {
         inicializar();
         this.motor = new MotorTest();
         objetivo = motor.obtenerPalabraAleatoria();
+        mapaObjetivo = crearMapaObjetivo();
         palabras = new String[6];
         this.palabrajTextField.setHighlighter(null);
         this.motor1JRadioButtonMenuItem.setSelected(true);
         this.motor2JRadioButtonMenuItem.setSelected(false);
-        this.motor3JRadioButtonMenuItem.setSelected(false);
 
         //TODO: implementar el funcionamiento del enter para poder saltar de linea
+    }
+    
+    private Map crearMapaObjetivo(){
+        Map<Character, Integer> map = new HashMap<>();
+        for (Character c : objetivo.toCharArray()) {
+            if (!map.containsKey(c)) {
+                map.put(c, 1);
+            }else{
+                map.put(c, map.get(c) + 1);
+            }
+        }
+        return map;
+        
     }
     
     private void inicializar(){
@@ -190,7 +205,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         motor1JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         motor2JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
-        motor3JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         motor4JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -222,7 +236,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        fondojPanel.setBackground(new java.awt.Color(51, 51, 51));
+        fondojPanel.setBackground(new java.awt.Color(50, 50, 50));
 
         principaljPanel.setBackground(new java.awt.Color(100, 100, 100));
         principaljPanel.setLayout(new java.awt.GridLayout(6, 5));
@@ -1066,15 +1080,6 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         jMenu2.add(motor2JRadioButtonMenuItem);
 
-        motoresButtonGroup.add(motor3JRadioButtonMenuItem);
-        motor3JRadioButtonMenuItem.setText("Ingles");
-        motor3JRadioButtonMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                motor3JRadioButtonMenuItemActionPerformed(evt);
-            }
-        });
-        jMenu2.add(motor3JRadioButtonMenuItem);
-
         motoresButtonGroup.add(motor4JRadioButtonMenuItem);
         motor4JRadioButtonMenuItem.setText("archivo");
         motor4JRadioButtonMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -1147,21 +1152,33 @@ public class MainJFrame extends javax.swing.JFrame {
         }        
     }
     private void setColores() {
+        StringBuilder objetivo = new StringBuilder(this.objetivo);
+        //Primero cuenta las palabras que serian verdes
+        for (int i = 0; i < 5; i++) {
+            if (objetivo.charAt(i) == palabras[fila].charAt(i)) {
+                mapaObjetivo.put(palabras[fila].charAt(i), mapaObjetivo.get(palabras[fila].charAt(i))-1);
+                
+            }
+        }
+        //luego colorea cada una de su color correspondiente
         for (int i = 0; i < 5; i++) {
             if (objetivo.charAt(i) == palabras[fila].charAt(i)) {
                 cuadricula[fila][i].setForeground(COLOR_VERDE);
                 mapaTeclado.get(palabras[fila].charAt(i)).setBackground(COLOR_VERDE);
-            } else if (objetivo.contains(palabras[fila].charAt(i) + "")) {
+            } else if (objetivo.toString().contains(palabras[fila].charAt(i) + "") && mapaObjetivo.get(palabras[fila].charAt(i)) > 0) {
                 cuadricula[fila][i].setForeground(COLOR_AMARILLO);
+                mapaObjetivo.put(palabras[fila].charAt(i), mapaObjetivo.get(palabras[fila].charAt(i))-1);                
                 if (!mapaTeclado.get(palabras[fila].charAt(i)).getBackground().equals(COLOR_VERDE)) {
                     mapaTeclado.get(palabras[fila].charAt(i)).setBackground(COLOR_AMARILLO);
                 }
                 
             } else {
                 cuadricula[fila][i].setForeground(COLOR_NEGRO);
-                mapaTeclado.get(palabras[fila].charAt(i)).setBackground(COLOR_NEGRO);
-//                mapaTeclado.get(palabras[fila].charAt(i)).setBorder(null);
-            }
+                if (!mapaTeclado.get(palabras[fila].charAt(i)).getBackground().equals(COLOR_VERDE)) {
+                    mapaTeclado.get(palabras[fila].charAt(i)).setBackground(COLOR_NEGRO);
+                }                
+            }          
+            
         }
     }
 
@@ -1191,15 +1208,6 @@ public class MainJFrame extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_motor2JRadioButtonMenuItemActionPerformed
-
-    private void motor3JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor3JRadioButtonMenuItemActionPerformed
-        if (!this.motor.getClass().equals(MotorIngles.class)) {
-            motor = new MotorIngles();
-            restart();
-
-        }
-
-    }//GEN-LAST:event_motor3JRadioButtonMenuItemActionPerformed
 
     private void nuevoJMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoJMenuItem1ActionPerformed
         restart();
@@ -1358,6 +1366,7 @@ public class MainJFrame extends javax.swing.JFrame {
         fila = 0;
         this.textojLabel1.setText(" ");
         objetivo = motor.obtenerPalabraAleatoria();
+        mapaObjetivo = crearMapaObjetivo();
     }
 
     private void setPalabra() {
@@ -1520,7 +1529,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JRadioButtonMenuItem motor1JRadioButtonMenuItem;
     private javax.swing.JRadioButtonMenuItem motor2JRadioButtonMenuItem;
-    private javax.swing.JRadioButtonMenuItem motor3JRadioButtonMenuItem;
     private javax.swing.JRadioButtonMenuItem motor4JRadioButtonMenuItem;
     private javax.swing.ButtonGroup motoresButtonGroup;
     private javax.swing.JMenuItem nuevoJMenuItem1;

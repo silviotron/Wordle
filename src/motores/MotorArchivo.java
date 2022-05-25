@@ -63,8 +63,12 @@ public class MotorArchivo implements IMotor {
         }        
 
     }
+    
+    public void add(String s){
+        
+    }
 
-    public void add(String s) {
+    /*public void add(String s) {
         GestorArchivos.add(archivo, s);
     }
 
@@ -74,7 +78,7 @@ public class MotorArchivo implements IMotor {
 
     public void add(String[] array) {
         GestorArchivos.add(archivo, array);
-    }
+    }*/
 
     @Override
     public boolean checkPalabra(String s) {
