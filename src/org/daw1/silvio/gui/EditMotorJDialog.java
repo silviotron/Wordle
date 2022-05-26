@@ -4,6 +4,7 @@
  */
 package org.daw1.silvio.gui;
 
+import java.awt.event.KeyEvent;
 import org.daw1.silvio.motores.IMotor;
 
 /**
@@ -72,6 +73,11 @@ public class EditMotorJDialog extends javax.swing.JDialog {
                 altaJTextFieldActionPerformed(evt);
             }
         });
+        altaJTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                altaJTextFieldKeyPressed(evt);
+            }
+        });
 
         altaJButton.setText("Alta");
         altaJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +118,11 @@ public class EditMotorJDialog extends javax.swing.JDialog {
         bajaJTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bajaJTextFieldActionPerformed(evt);
+            }
+        });
+        bajaJTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bajaJTextFieldKeyPressed(evt);
             }
         });
 
@@ -207,43 +218,63 @@ public class EditMotorJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_bajaJTextFieldActionPerformed
 
     private void altaJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaJButtonActionPerformed
+        alta();
+    }//GEN-LAST:event_altaJButtonActionPerformed
+
+    private void alta() {
         String palabra = altaJTextField.getText().toUpperCase();
         if (palabra.matches("[A-Z]{5}")) {
             if (!motor.checkPalabra(palabra)) {
                 motor.add(palabra);
                 ErrorAltaJLabel.setForeground(MainJFrame.COLOR_VERDE);
-                ErrorAltaJLabel.setText("palabra dada de alta correctamente");
-
+                ErrorAltaJLabel.setText("La palabra " + palabra +  " ha sido dada de alta correctamente");
+                
             } else {
                 ErrorAltaJLabel.setForeground(MainJFrame.COLOR_ROJO);
-                ErrorAltaJLabel.setText("Error. la palabra ya existe");
+                ErrorAltaJLabel.setText("Error. la palabra " + palabra +  " ya existe");
             }
-
+            
         } else {
             ErrorAltaJLabel.setForeground(MainJFrame.COLOR_ROJO);
             ErrorAltaJLabel.setText("Error. la palabra tiene que ser de 5 letras");
-
+            
         }
-    }//GEN-LAST:event_altaJButtonActionPerformed
+    }
 
     private void bajaJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajaJButtonActionPerformed
+        baja();
+    }//GEN-LAST:event_bajaJButtonActionPerformed
+
+    private void altaJTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altaJTextFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            alta();
+        }
+    }//GEN-LAST:event_altaJTextFieldKeyPressed
+
+    private void bajaJTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bajaJTextFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            baja();
+        }
+    }//GEN-LAST:event_bajaJTextFieldKeyPressed
+
+    private void baja() {
         String palabra = bajaJTextField.getText().toUpperCase();
         if (palabra.matches("[A-Z]{5}")) {
             if (motor.checkPalabra(palabra)) {
                 motor.remove(palabra);
                 ErrorBajaJLabel.setForeground(MainJFrame.COLOR_VERDE);
-                ErrorBajaJLabel.setText("palabra dada de baja correctamente");
+                ErrorBajaJLabel.setText("La palabra " + palabra +  " ha sido dada de baja correctamente");
             } else {
                 ErrorBajaJLabel.setForeground(MainJFrame.COLOR_ROJO);
-                ErrorBajaJLabel.setText("Error");
+                ErrorBajaJLabel.setText("Error. la palabra " + palabra +  " no existe");
             }
-
+            
         } else {
             ErrorBajaJLabel.setForeground(MainJFrame.COLOR_ROJO);
             ErrorBajaJLabel.setText("Error. la palabra tiene que ser de 5 letras");
-
+            
         }
-    }//GEN-LAST:event_bajaJButtonActionPerformed
+    }
 
     /**
      * @param args the command line arguments

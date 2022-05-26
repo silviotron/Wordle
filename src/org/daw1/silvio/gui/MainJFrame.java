@@ -226,11 +226,6 @@ public class MainJFrame extends javax.swing.JFrame {
         palabrajTextField.setCaretColor(new java.awt.Color(102, 102, 102));
         palabrajTextField.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         palabrajTextField.setMargin(new java.awt.Insets(2, 10, 2, 6));
-        palabrajTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                palabrajTextFieldActionPerformed(evt);
-            }
-        });
         palabrajTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 palabrajTextFieldKeyPressed(evt);
@@ -1167,10 +1162,6 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void palabrajTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_palabrajTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_palabrajTextFieldActionPerformed
-
     private void palabrajTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_palabrajTextFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             enter();
@@ -1214,7 +1205,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         fila = 6;
                     } else if (fila == 5) {
                         this.textojLabel1.setForeground(COLOR_ROJO);
-                        this.textojLabel1.setText("Perdiste mi pana, era " + objetivo);
+                        this.textojLabel1.setText("Perdiste, la palabra era " + objetivo);
                         fila = 6;
                     }
                     palabrajTextField.setText("");
