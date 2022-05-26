@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package gui;
+package org.daw1.silvio.gui;
 
-import motores.IMotor;
+import org.daw1.silvio.motores.IMotor;
 
 /**
  *

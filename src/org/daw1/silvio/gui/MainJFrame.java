@@ -2,8 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package gui;
+package org.daw1.silvio.gui;
 
+import org.daw1.silvio.motores.MotorArchivo;
+import org.daw1.silvio.motores.MotorAlumnos;
+import org.daw1.silvio.motores.IMotor;
+import org.daw1.silvio.motores.MotorBD;
+import org.daw1.silvio.motores.MotorTest;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
@@ -15,7 +20,6 @@ import java.util.Map;
 import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import motores.*;
 
 /**
  *
@@ -52,7 +56,6 @@ public class MainJFrame extends javax.swing.JFrame {
         mapaObjetivo = crearMapaObjetivo();
         palabras = new String[6];
 
-        //TODO: implementar el funcionamiento del enter para poder saltar de linea
     }
 
     public MainJFrame() {
@@ -66,7 +69,7 @@ public class MainJFrame extends javax.swing.JFrame {
         this.motor1JRadioButtonMenuItem.setSelected(true);
         this.motor2JRadioButtonMenuItem.setSelected(false);
 
-        //TODO: implementar el funcionamiento del enter para poder saltar de linea
+
     }
     
     private Map crearMapaObjetivo(){
@@ -206,6 +209,8 @@ public class MainJFrame extends javax.swing.JFrame {
         motor1JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         motor2JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         motor4JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
+        motor3JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
+        motor5JRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1082,13 +1087,31 @@ public class MainJFrame extends javax.swing.JFrame {
         jMenu2.add(motor2JRadioButtonMenuItem);
 
         motoresButtonGroup.add(motor4JRadioButtonMenuItem);
-        motor4JRadioButtonMenuItem.setText("archivo");
+        motor4JRadioButtonMenuItem.setText("Archivo");
         motor4JRadioButtonMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 motor4JRadioButtonMenuItemActionPerformed(evt);
             }
         });
         jMenu2.add(motor4JRadioButtonMenuItem);
+
+        motoresButtonGroup.add(motor3JRadioButtonMenuItem);
+        motor3JRadioButtonMenuItem.setText("BD (Español)");
+        motor3JRadioButtonMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                motor3JRadioButtonMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(motor3JRadioButtonMenuItem);
+
+        motoresButtonGroup.add(motor5JRadioButtonMenuItem1);
+        motor5JRadioButtonMenuItem1.setText("BD (Galego)");
+        motor5JRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                motor5JRadioButtonMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(motor5JRadioButtonMenuItem1);
 
         jMenuItem1.setText("administrar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -1387,6 +1410,15 @@ public class MainJFrame extends javax.swing.JFrame {
         editMotorJDialog.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void motor3JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor3JRadioButtonMenuItemActionPerformed
+        motor = new MotorBD("es");
+        restart();
+    }//GEN-LAST:event_motor3JRadioButtonMenuItemActionPerformed
+
+    private void motor5JRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor5JRadioButtonMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_motor5JRadioButtonMenuItem1ActionPerformed
+
     private void restart() {                
         for (JButton x : mapaTeclado.values()) {
             x.setBackground(COLOR_GRIS);
@@ -1423,43 +1455,42 @@ public class MainJFrame extends javax.swing.JFrame {
             cuadricula[fila][3].setText("");
             cuadricula[fila][4].setText("");
         }
-
-        if (palabra.length() == 1) {
+        else if (palabra.length() == 1) {
             cuadricula[fila][0].setText(palabra.charAt(0) + "");
             cuadricula[fila][1].setText("");
             cuadricula[fila][2].setText("");
             cuadricula[fila][3].setText("");
             cuadricula[fila][4].setText("");
         }
-        if (palabra.length() == 2) {
+        else if (palabra.length() == 2) {
             cuadricula[fila][0].setText(palabra.charAt(0) + "");
             cuadricula[fila][1].setText(palabra.charAt(1) + "");
             cuadricula[fila][2].setText("");
             cuadricula[fila][3].setText("");
             cuadricula[fila][4].setText("");
         }
-        if (palabra.length() == 3) {
+        else if (palabra.length() == 3) {
             cuadricula[fila][0].setText(palabra.charAt(0) + "");
             cuadricula[fila][1].setText(palabra.charAt(1) + "");
             cuadricula[fila][2].setText(palabra.charAt(2) + "");
             cuadricula[fila][3].setText("");
             cuadricula[fila][4].setText("");
         }
-        if (palabra.length() == 4) {
+        else if (palabra.length() == 4) {
             cuadricula[fila][0].setText(palabra.charAt(0) + "");
             cuadricula[fila][1].setText(palabra.charAt(1) + "");
             cuadricula[fila][2].setText(palabra.charAt(2) + "");
             cuadricula[fila][3].setText(palabra.charAt(3) + "");
             cuadricula[fila][4].setText("");
         }
-        if (palabra.length() == 5) {
+        else if (palabra.length() == 5) {
             cuadricula[fila][0].setText(palabra.charAt(0) + "");
             cuadricula[fila][1].setText(palabra.charAt(1) + "");
             cuadricula[fila][2].setText(palabra.charAt(2) + "");
             cuadricula[fila][3].setText(palabra.charAt(3) + "");
             cuadricula[fila][4].setText(palabra.charAt(4) + "");
         }
-        if (palabra.length() > 5) {
+        else if (palabra.length() > 5) {
             palabra = palabra.substring(0, 5);
         }
         this.palabrajTextField.setText(palabra);
@@ -1568,7 +1599,9 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JRadioButtonMenuItem motor1JRadioButtonMenuItem;
     private javax.swing.JRadioButtonMenuItem motor2JRadioButtonMenuItem;
+    private javax.swing.JRadioButtonMenuItem motor3JRadioButtonMenuItem;
     private javax.swing.JRadioButtonMenuItem motor4JRadioButtonMenuItem;
+    private javax.swing.JRadioButtonMenuItem motor5JRadioButtonMenuItem1;
     private javax.swing.ButtonGroup motoresButtonGroup;
     private javax.swing.JMenuItem nuevoJMenuItem1;
     private javax.swing.JTextField palabrajTextField;
