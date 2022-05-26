@@ -44,7 +44,7 @@ public class MotorBD implements IMotor {
 
     @Override
     public String obtenerPalabraAleatoria() {
-        String palabra = "XXXXX";
+        String palabra = null;
         try ( Connection conn = DriverManager.getConnection(URL);  PreparedStatement ps = conn.prepareStatement("SELECT palabra FROM palabras WHERE lang = ? ORDER BY RANDOM() LIMIT 1")) {
             ps.setString(1, lang);
             try ( ResultSet rs = ps.executeQuery()) {
