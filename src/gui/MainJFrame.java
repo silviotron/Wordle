@@ -1145,7 +1145,31 @@ public class MainJFrame extends javax.swing.JFrame {
                     setColores();
                     if (palabras[fila].equals(objetivo)) {
                         this.textojLabel1.setForeground(COLOR_VERDE);
-                        this.textojLabel1.setText("Ganaste mi rey");
+                        String intento;
+                        switch(fila){
+                            case 0:
+                                intento = "primer";
+                                break;
+                            case 1:
+                                intento = "segundo";
+                                break;
+                            case 2:
+                                intento = "tercer";
+                                break;
+                            case 3:
+                                intento = "cuarto";
+                                break;
+                            case 4:
+                                intento = "quinto";
+                                break;
+                            case 5:
+                                intento = "sexto";
+                                break;
+                            default:
+                                intento = "";
+                                
+                        }
+                        this.textojLabel1.setText("Ganaste en el " + intento + " intento");
                         fila = 6;
                     } else if (fila == 5) {
                         this.textojLabel1.setForeground(COLOR_ROJO);
@@ -1162,6 +1186,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }
     private void setColores() {
         //Primero cuenta las palabras que serian verdes
+        Map<Character, Integer> mapaObjetivo = new HashMap<>(this.mapaObjetivo);
         for (int i = 0; i < 5; i++) {
             if (objetivo.charAt(i) == palabras[fila].charAt(i)) {
                 mapaObjetivo.put(palabras[fila].charAt(i), mapaObjetivo.get(palabras[fila].charAt(i))-1);
