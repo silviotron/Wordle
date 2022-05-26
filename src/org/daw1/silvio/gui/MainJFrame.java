@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JRadioButtonMenuItem;
 
 /**
  *
@@ -36,6 +37,7 @@ public class MainJFrame extends javax.swing.JFrame {
     protected static final Color COLOR_CLARO = new Color(150,150,150);
 
     private IMotor motor;
+    private JRadioButtonMenuItem motorSeleccionado = this.motor1JRadioButtonMenuItem;
     private Map<Character, Integer> mapaObjetivo;   
     private String objetivo;
     private String palabra;
@@ -210,7 +212,7 @@ public class MainJFrame extends javax.swing.JFrame {
         motor2JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         motor4JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         motor3JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
-        motor5JRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
+        motor5JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1104,14 +1106,14 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         jMenu2.add(motor3JRadioButtonMenuItem);
 
-        motoresButtonGroup.add(motor5JRadioButtonMenuItem1);
-        motor5JRadioButtonMenuItem1.setText("BD (Galego)");
-        motor5JRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        motoresButtonGroup.add(motor5JRadioButtonMenuItem);
+        motor5JRadioButtonMenuItem.setText("BD (Galego)");
+        motor5JRadioButtonMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                motor5JRadioButtonMenuItem1ActionPerformed(evt);
+                motor5JRadioButtonMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(motor5JRadioButtonMenuItem1);
+        jMenu2.add(motor5JRadioButtonMenuItem);
 
         jMenuItem1.setText("administrar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -1248,19 +1250,22 @@ public class MainJFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_palabrajTextFieldKeyTyped
 
+    
     private void motor1JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor1JRadioButtonMenuItemActionPerformed
-        if (!this.motor.getClass().equals(MotorTest.class)) {
+        if (this.motorSeleccionado != motor1JRadioButtonMenuItem) {
             motor = new MotorTest();
             restart();
+            motorSeleccionado = motor1JRadioButtonMenuItem;
 
         }
 
     }//GEN-LAST:event_motor1JRadioButtonMenuItemActionPerformed
 
     private void motor2JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor2JRadioButtonMenuItemActionPerformed
-        if (!this.motor.getClass().equals(MotorAlumnos.class)) {
+        if (this.motorSeleccionado != motor2JRadioButtonMenuItem) {
             motor = new MotorAlumnos();
             restart();
+            motorSeleccionado = motor2JRadioButtonMenuItem;
         }
 
     }//GEN-LAST:event_motor2JRadioButtonMenuItemActionPerformed
@@ -1270,8 +1275,11 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_nuevoJMenuItem1ActionPerformed
 
     private void motor4JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor4JRadioButtonMenuItemActionPerformed
-        motor = new MotorArchivo();
-        restart();
+        if (this.motorSeleccionado != motor4JRadioButtonMenuItem) {
+            motor = new MotorArchivo();
+            restart();
+            motorSeleccionado = motor4JRadioButtonMenuItem;
+        }
     }//GEN-LAST:event_motor4JRadioButtonMenuItemActionPerformed
 
     private void escribirLetra(char letra){
@@ -1408,18 +1416,27 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         EditMotorJDialog editMotorJDialog = new EditMotorJDialog(this,true,this.motor);
         editMotorJDialog.setVisible(true);
+        restart();
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void motor3JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor3JRadioButtonMenuItemActionPerformed
-        motor = new MotorBD("es");
-        restart();
+        if (this.motorSeleccionado != motor3JRadioButtonMenuItem) {
+            motor = new MotorBD("es");
+            restart();
+            motorSeleccionado = motor3JRadioButtonMenuItem;
+        }
     }//GEN-LAST:event_motor3JRadioButtonMenuItemActionPerformed
 
-    private void motor5JRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor5JRadioButtonMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_motor5JRadioButtonMenuItem1ActionPerformed
+    private void motor5JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor5JRadioButtonMenuItemActionPerformed
+        if (this.motorSeleccionado != motor5JRadioButtonMenuItem) {
+            motor = new MotorBD("gl");
+            restart();
+            motorSeleccionado = motor5JRadioButtonMenuItem;
+        }
+    }//GEN-LAST:event_motor5JRadioButtonMenuItemActionPerformed
 
-    private void restart() {                
+    protected  void restart() {                
         for (JButton x : mapaTeclado.values()) {
             x.setBackground(COLOR_GRIS);
         }
@@ -1601,7 +1618,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem motor2JRadioButtonMenuItem;
     private javax.swing.JRadioButtonMenuItem motor3JRadioButtonMenuItem;
     private javax.swing.JRadioButtonMenuItem motor4JRadioButtonMenuItem;
-    private javax.swing.JRadioButtonMenuItem motor5JRadioButtonMenuItem1;
+    private javax.swing.JRadioButtonMenuItem motor5JRadioButtonMenuItem;
     private javax.swing.ButtonGroup motoresButtonGroup;
     private javax.swing.JMenuItem nuevoJMenuItem1;
     private javax.swing.JTextField palabrajTextField;

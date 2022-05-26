@@ -4,6 +4,8 @@
  */
 package org.daw1.silvio.gui;
 
+import java.awt.Frame;
+import javax.swing.JFrame;
 import org.daw1.silvio.motores.IMotor;
 
 /**
@@ -11,8 +13,9 @@ import org.daw1.silvio.motores.IMotor;
  * @author silvi
  */
 public class EditMotorJDialog extends javax.swing.JDialog {
-    
-    private static IMotor motor ;
+
+    private static IMotor motor;
+
     /**
      * Creates new form EditMotorJDialog
      */
@@ -212,16 +215,16 @@ public class EditMotorJDialog extends javax.swing.JDialog {
                 motor.add(palabra);
                 ErrorAltaJLabel.setForeground(MainJFrame.COLOR_VERDE);
                 ErrorAltaJLabel.setText("palabra dada de alta correctamente");
-            }else{
+
+            } else {
                 ErrorAltaJLabel.setForeground(MainJFrame.COLOR_ROJO);
-                ErrorAltaJLabel.setText("Error. la palabra ya existe");                
+                ErrorAltaJLabel.setText("Error. la palabra ya existe");
             }
 
-            
-        }else{
+        } else {
             ErrorAltaJLabel.setForeground(MainJFrame.COLOR_ROJO);
             ErrorAltaJLabel.setText("Error. la palabra tiene que ser de 5 letras");
-            
+
         }
     }//GEN-LAST:event_altaJButtonActionPerformed
 
@@ -232,16 +235,15 @@ public class EditMotorJDialog extends javax.swing.JDialog {
                 motor.remove(palabra);
                 ErrorBajaJLabel.setForeground(MainJFrame.COLOR_VERDE);
                 ErrorBajaJLabel.setText("palabra dada de baja correctamente");
-            }else{
+            } else {
                 ErrorBajaJLabel.setForeground(MainJFrame.COLOR_ROJO);
-                ErrorBajaJLabel.setText("Error");                
+                ErrorBajaJLabel.setText("Error");
             }
 
-            
-        }else{
+        } else {
             ErrorBajaJLabel.setForeground(MainJFrame.COLOR_ROJO);
             ErrorBajaJLabel.setText("Error. la palabra tiene que ser de 5 letras");
-            
+
         }
     }//GEN-LAST:event_bajaJButtonActionPerformed
 
