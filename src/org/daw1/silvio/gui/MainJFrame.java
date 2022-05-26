@@ -1421,6 +1421,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_TecladojButtonDeleteActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        restart();
         EditMotorJDialog editMotorJDialog = new EditMotorJDialog(this,true,this.motor);
         editMotorJDialog.setVisible(true);
         restart();
@@ -1472,7 +1473,13 @@ public class MainJFrame extends javax.swing.JFrame {
         fila = 0;
         this.textojLabel1.setText(" ");
         objetivo = motor.obtenerPalabraAleatoria();
-        mapaObjetivo = crearMapaObjetivo();
+        if (objetivo == null) {
+            this.textojLabel1.setForeground(COLOR_ROJO);
+            this.textojLabel1.setText("Error. el diccionario esta vacio");    
+            fila = 6;
+        }else{
+            mapaObjetivo = crearMapaObjetivo();
+        }
     }
 
     private void setPalabra() {

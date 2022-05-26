@@ -47,6 +47,7 @@ public class EditMotorJDialog extends javax.swing.JDialog {
         ErrorBajaJLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(50, 50, 50));
 
@@ -79,6 +80,7 @@ public class EditMotorJDialog extends javax.swing.JDialog {
             }
         });
 
+        altaJButton.setBackground(new java.awt.Color(150, 150, 150));
         altaJButton.setText("Alta");
         altaJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +128,7 @@ public class EditMotorJDialog extends javax.swing.JDialog {
             }
         });
 
+        bajaJButton.setBackground(new java.awt.Color(150, 150, 150));
         bajaJButton.setText("baja");
         bajaJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,10 +225,10 @@ public class EditMotorJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_altaJButtonActionPerformed
 
     private void alta() {
-        String palabra = altaJTextField.getText().toUpperCase();
+        String palabra = altaJTextField.getText().trim().toUpperCase().replaceAll("Á", "A").replaceAll("É", "E").replaceAll("Í", "I").replaceAll("Ó", "O").replaceAll("Ú", "Ú");
         if (palabra.matches("[A-Z]{5}")) {
             if (!motor.checkPalabra(palabra)) {
-                motor.add(palabra);
+                motor.add(palabra.replaceAll("[^A-Z]", ""));
                 ErrorAltaJLabel.setForeground(MainJFrame.COLOR_VERDE);
                 ErrorAltaJLabel.setText("La palabra " + palabra +  " ha sido dada de alta correctamente");
                 
@@ -258,10 +261,10 @@ public class EditMotorJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_bajaJTextFieldKeyPressed
 
     private void baja() {
-        String palabra = bajaJTextField.getText().toUpperCase();
+        String palabra = bajaJTextField.getText().trim().toUpperCase().replaceAll("Á", "A").replaceAll("É", "E").replaceAll("Í", "I").replaceAll("Ó", "O").replaceAll("Ú", "Ú");
         if (palabra.matches("[A-Z]{5}")) {
             if (motor.checkPalabra(palabra)) {
-                motor.remove(palabra);
+                motor.remove(palabra.replaceAll("[^A-Z]", ""));
                 ErrorBajaJLabel.setForeground(MainJFrame.COLOR_VERDE);
                 ErrorBajaJLabel.setText("La palabra " + palabra +  " ha sido dada de baja correctamente");
             } else {

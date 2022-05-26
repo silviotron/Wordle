@@ -94,8 +94,11 @@ public class MotorArchivo implements IMotor {
 
     @Override
     public String obtenerPalabraAleatoria() {
-        String[] array = diccionario.toArray(new String[diccionario.size()]);
-        return array[(int) (Math.random() * diccionario.size())];
-    }
+        if (!diccionario.isEmpty()) {
+            String[] array = diccionario.toArray(new String[diccionario.size()]);
+            return array[(int) (Math.random() * diccionario.size())]; 
+        }
+        return null;
+   }
 
 }
