@@ -8,7 +8,7 @@ package org.daw1.silvio.motores;
  *
  * @author silvi
  */
-public class MotorTest implements IMotor{
+public class MotorTest implements IMotor {
 
     @Override
     public boolean checkPalabra(String s) {
@@ -29,6 +29,5 @@ public class MotorTest implements IMotor{
     public boolean remove(String s) {
         return true;
     }
-    
-    
+
 }

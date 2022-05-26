@@ -4,13 +4,11 @@
  */
 package org.daw1.silvio.gui;
 
-import java.awt.Frame;
-import javax.swing.JFrame;
 import org.daw1.silvio.motores.IMotor;
 
 /**
  *
- * @author silvi
+ * @author silvio
  */
 public class EditMotorJDialog extends javax.swing.JDialog {
 

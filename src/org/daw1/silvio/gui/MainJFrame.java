@@ -10,21 +10,17 @@ import org.daw1.silvio.motores.IMotor;
 import org.daw1.silvio.motores.MotorBD;
 import org.daw1.silvio.motores.MotorTest;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.KeyEvent;
-import java.awt.font.TextAttribute;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JRadioButtonMenuItem;
+import org.daw1.silvio.motores.MotorArchivoTexto;
 
 /**
  *
- * @author silvi
+ * @author silvio
  */
 public class MainJFrame extends javax.swing.JFrame {
     
@@ -37,7 +33,7 @@ public class MainJFrame extends javax.swing.JFrame {
     protected static final Color COLOR_CLARO = new Color(150,150,150);
 
     private IMotor motor;
-    private JRadioButtonMenuItem motorSeleccionado = this.motor1JRadioButtonMenuItem;
+    private JRadioButtonMenuItem motorSeleccionado;
     private Map<Character, Integer> mapaObjetivo;   
     private String objetivo;
     private String palabra;
@@ -57,6 +53,7 @@ public class MainJFrame extends javax.swing.JFrame {
         objetivo = motor.obtenerPalabraAleatoria();
         mapaObjetivo = crearMapaObjetivo();
         palabras = new String[6];
+        motorSeleccionado = this.motor1JRadioButtonMenuItem;
 
     }
 
@@ -68,8 +65,8 @@ public class MainJFrame extends javax.swing.JFrame {
         mapaObjetivo = crearMapaObjetivo();
         palabras = new String[6];
         this.palabrajTextField.setHighlighter(null);
-        this.motor1JRadioButtonMenuItem.setSelected(true);
-        this.motor2JRadioButtonMenuItem.setSelected(false);
+        motorSeleccionado = this.motor1JRadioButtonMenuItem;
+
 
 
     }
@@ -207,10 +204,12 @@ public class MainJFrame extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         nuevoJMenuItem1 = new javax.swing.JMenuItem();
+        salirJMenuItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         motor1JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         motor2JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         motor4JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
+        motor6JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         motor3JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         motor5JRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -1065,6 +1064,14 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         jMenu1.add(nuevoJMenuItem1);
 
+        salirJMenuItem.setText("Salir");
+        salirJMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirJMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(salirJMenuItem);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Motores");
@@ -1089,13 +1096,22 @@ public class MainJFrame extends javax.swing.JFrame {
         jMenu2.add(motor2JRadioButtonMenuItem);
 
         motoresButtonGroup.add(motor4JRadioButtonMenuItem);
-        motor4JRadioButtonMenuItem.setText("Archivo");
+        motor4JRadioButtonMenuItem.setText("Archivo (set)");
         motor4JRadioButtonMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 motor4JRadioButtonMenuItemActionPerformed(evt);
             }
         });
         jMenu2.add(motor4JRadioButtonMenuItem);
+
+        motoresButtonGroup.add(motor6JRadioButtonMenuItem);
+        motor6JRadioButtonMenuItem.setText("Archivo (texto)");
+        motor6JRadioButtonMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                motor6JRadioButtonMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(motor6JRadioButtonMenuItem);
 
         motoresButtonGroup.add(motor3JRadioButtonMenuItem);
         motor3JRadioButtonMenuItem.setText("BD (Español)");
@@ -1436,6 +1452,18 @@ public class MainJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_motor5JRadioButtonMenuItemActionPerformed
 
+    private void salirJMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirJMenuItemActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_salirJMenuItemActionPerformed
+
+    private void motor6JRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor6JRadioButtonMenuItemActionPerformed
+        if (this.motorSeleccionado != motor6JRadioButtonMenuItem) {
+            motor = new MotorArchivoTexto();
+            restart();
+            motorSeleccionado = motor6JRadioButtonMenuItem;
+        }
+    }//GEN-LAST:event_motor6JRadioButtonMenuItemActionPerformed
+
     protected  void restart() {                
         for (JButton x : mapaTeclado.values()) {
             x.setBackground(COLOR_GRIS);
@@ -1457,7 +1485,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     private void setPalabra() {
-        palabra = this.palabrajTextField.getText().toUpperCase().replaceAll("[^A-ZÑÁÉÍÓÚ]", ""); //tildes: ÁÉÍÓÚ
+        palabra = this.palabrajTextField.getText().toUpperCase().replaceAll("[^A-ZÑÁÉÍÓÚ]", "").replaceAll("Á", "A").replaceAll("É", "E").replaceAll("Í", "I").replaceAll("Ó", "O").replaceAll("Ú", "Ú"); //tildes: ÁÉÍÓÚ
 
         if (fila < 6) {
             setLetras();
@@ -1619,10 +1647,12 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem motor3JRadioButtonMenuItem;
     private javax.swing.JRadioButtonMenuItem motor4JRadioButtonMenuItem;
     private javax.swing.JRadioButtonMenuItem motor5JRadioButtonMenuItem;
+    private javax.swing.JRadioButtonMenuItem motor6JRadioButtonMenuItem;
     private javax.swing.ButtonGroup motoresButtonGroup;
     private javax.swing.JMenuItem nuevoJMenuItem1;
     private javax.swing.JTextField palabrajTextField;
     private javax.swing.JPanel principaljPanel;
+    private javax.swing.JMenuItem salirJMenuItem;
     private javax.swing.JLabel textojLabel1;
     private javax.swing.JLabel titulojLabel;
     // End of variables declaration//GEN-END:variables

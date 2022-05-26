@@ -55,31 +55,13 @@ public class MotorBD implements IMotor {
         } catch (SQLException ex) {
             Logger.getLogger(MotorBD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        printAll();
         return palabra;
-    }
-    
-    public void printAll(){
-        System.out.println(lang);
-        String palabra = null;
-        try ( Connection conn = DriverManager.getConnection(URL);  PreparedStatement ps = conn.prepareStatement("SELECT palabra FROM palabras WHERE lang = ? ")) {
-            ps.setString(1, lang);
-            try ( ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    System.out.println(rs.getString("palabra"));
-                }
-            }
-        } catch (SQLException ex) {
-            System.out.println("ERROR: " + ex.getMessage());
-        }
-       
     }
 
     @Override
     public boolean add(String s) {
         int ejecutado = 0;
-        try (Connection conn = DriverManager.getConnection(URL);
-                PreparedStatement ps = conn.prepareStatement("INSERT INTO palabras (palabra, lang) VALUES(?, ?)")) {
+        try ( Connection conn = DriverManager.getConnection(URL);  PreparedStatement ps = conn.prepareStatement("INSERT INTO palabras (palabra, lang) VALUES(?, ?)")) {
             ps.setString(1, s.toUpperCase().trim());
             ps.setString(2, lang);
             ejecutado = ps.executeUpdate();
@@ -92,11 +74,10 @@ public class MotorBD implements IMotor {
     @Override
     public boolean remove(String s) {
         int ejecutado = 0;
-        try (Connection conn = DriverManager.getConnection(URL);
-                PreparedStatement ps = conn.prepareStatement("DELETE FROM palabras WHERE palabra = ?")) {
+        try ( Connection conn = DriverManager.getConnection(URL);  PreparedStatement ps = conn.prepareStatement("DELETE FROM palabras WHERE palabra = ?")) {
             ps.setString(1, s.toUpperCase().trim());
             ejecutado = ps.executeUpdate();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(MotorBD.class.getName()).log(Level.SEVERE, null, ex);
         }
